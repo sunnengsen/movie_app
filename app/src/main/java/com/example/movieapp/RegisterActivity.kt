@@ -1,20 +1,20 @@
 package com.example.movieapp
 
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
+import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
+import com.bumptech.glide.Glide
 
 class RegisterActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         setContentView(R.layout.activity_register)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }
+
+        val imageView = findViewById<ImageView>(R.id.imageView)
+        val imageUrl = "https://res.cloudinary.com/dzogfvwih/image/upload/v1705904914/p10745606_p_v13_bh_d73mtp.jpg"
+
+        Glide.with(this)
+            .load(imageUrl)
+            .into(imageView)
     }
 }
