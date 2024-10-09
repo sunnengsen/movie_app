@@ -27,6 +27,10 @@ class MainActivity : AppCompatActivity() {
                         replaceFragment(Category())
                         true
                     }
+                    R.id.bookmarks -> {
+                        replaceFragment(Bookmark())
+                        true
+                    }
                     R.id.profile -> {
                         replaceFragment(Profile())
                         true
