@@ -20,4 +20,5 @@
         android:text="Category Name"
         android:textAlignment="center" />
 
+
 </LinearLayout>
