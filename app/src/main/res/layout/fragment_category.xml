@@ -5,20 +5,20 @@
     android:layout_height="match_parent"
     tools:context=".Category">
 
-    <!-- TODO: Update blank fragment layout -->
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="16dp"
-        >
+        android:layout_height="match_parent"
+        android:padding="16dp">
+
         <LinearLayout
-            android:id="@+id/editTextPassword"
+            android:id="@+id/search"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:background="@drawable/rounded_full"
             android:orientation="horizontal"
-            android:paddingHorizontal="16dp">
+            android:paddingHorizontal="16dp"
+            >
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -33,8 +33,7 @@
                 android:layout_weight="1"
                 android:hint="Search..."
                 android:inputType="text"
-                android:padding="16dp"
-                />
+                android:padding="16dp" />
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -43,17 +42,21 @@
                 android:contentDescription="Eye Icon"
                 android:src="@drawable/ic_action_cancel" />
         </LinearLayout>
+        <EditText
+            android:id="@+id/searchEditText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="Search..."
+            android:inputType="text"
+            android:padding="16dp" />
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/search"
+            android:layout_marginTop="10dp" />
     </RelativeLayout>
-<!--    recyclerview-->
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="100dp"
-        android:padding="16dp"
-        android:scrollbars="vertical"
-        tools:listitem="@layout/item_category" />
-
 
 </FrameLayout>
