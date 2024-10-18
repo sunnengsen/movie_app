@@ -1,6 +1,7 @@
 package com.example.movieapp
 
 import android.os.Bundle
+import android.view.View
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -10,6 +11,7 @@ import com.example.movieapp.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -38,12 +40,15 @@ class MainActivity : AppCompatActivity() {
                     else -> false
                 }
             }
-
     }
-    private fun replaceFragment(fragment: Fragment){
+
+    private fun replaceFragment(fragment: Fragment) {
+        binding.progressBar.visibility = View.VISIBLE
         val fragmentManager = supportFragmentManager
         val fragmentTransaction = fragmentManager.beginTransaction()
         fragmentTransaction.replace(R.id.frame_layout, fragment)
         fragmentTransaction.commit()
+        fragmentManager.executePendingTransactions()
+        binding.progressBar.visibility = View.GONE
     }
 }
