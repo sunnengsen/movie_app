@@ -15,6 +15,7 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:scaleType="centerCrop"
             android:src="@drawable/background"
             />
 
@@ -22,27 +23,26 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="#A5000000"
-            android:padding="16dp"
-            >
+            android:padding="16dp">
 
             <ImageView
+                android:id="@+id/back"
+                android:layout_marginTop="20dp"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:src="@drawable/ic_action_back_button"
-                android:id="@+id/back"
-                />
+                android:src="@drawable/ic_action_back_button" />
 
             <TextView
                 android:id="@+id/hey"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/back"
+                android:layout_marginTop="30dp"
                 android:text="Hey,"
                 android:textColor="#D3D3D3"
-                android:textSize="28sp"
-                android:textStyle="bold"
-                android:layout_marginTop="16dp"
-                />
+                android:textSize="30sp"
+                android:textStyle="bold" />
+
             <TextView
                 android:id="@+id/welcome"
                 android:layout_width="wrap_content"
@@ -50,9 +50,9 @@
                 android:layout_below="@+id/hey"
                 android:text="Welcome"
                 android:textColor="#03A9F4"
-                android:textSize="28sp"
-                android:textStyle="bold"
-                />
+                android:textSize="30sp"
+                android:textStyle="bold" />
+
             <TextView
                 android:id="@+id/backs"
                 android:layout_width="wrap_content"
@@ -60,118 +60,107 @@
                 android:layout_below="@+id/welcome"
                 android:text="Back"
                 android:textColor="#03A9F4"
-                android:textSize="28sp"
-                android:textStyle="bold"
-                />
+                android:textSize="30sp"
+                android:textStyle="bold" />
 
             <RelativeLayout
                 android:id="@+id/login"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/backs"
-                android:layout_marginTop="70dp"
-                >
+                android:layout_centerInParent="true"
+                android:layout_marginTop="100dp">
 
                 <LinearLayout
                     android:id="@+id/email"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:paddingHorizontal="16dp"
                     android:background="@drawable/rounded_full"
-                    >
+                    android:orientation="horizontal"
+                    android:paddingHorizontal="16dp">
 
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/ic_action_mail"
                         android:layout_gravity="center"
-                        />
+                        android:src="@drawable/ic_action_mail" />
 
                     <EditText
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
                         android:layout_gravity="center"
-                        android:padding="14dp"
-                        android:hint="Email"
+                        android:layout_weight="1"
                         android:autofillHints="emailAddress"
-                        android:textColorHint="#D5CECE"
-                        />
+                        android:hint="Email"
+                        android:padding="14dp"
+                        android:textColorHint="#D5CECE" />
 
                 </LinearLayout>
 
                 <LinearLayout
                     android:id="@+id/password"
-                    android:layout_below="@+id/email"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
+                    android:layout_below="@+id/email"
                     android:layout_marginTop="24dp"
-                    android:paddingHorizontal="16dp"
                     android:background="@drawable/rounded_full"
-                    >
+                    android:orientation="horizontal"
+                    android:paddingHorizontal="16dp">
 
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:src="@drawable/ic_action_lock"
-                        />
+                        android:src="@drawable/ic_action_lock" />
 
                     <EditText
-                        android:layout_weight="1"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:padding="14dp"
-                        android:hint="Password"
                         android:layout_gravity="center"
+                        android:layout_weight="1"
                         android:autofillHints="emailAddress"
-                        android:textColorHint="#D5CECE"
-                        />
+                        android:hint="Password"
+                        android:padding="14dp"
+                        android:textColorHint="#D5CECE" />
 
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:src="@drawable/ic_action_eye"
-                        />
+                        android:src="@drawable/ic_action_eye" />
 
                 </LinearLayout>
 
                 <TextView
                     android:id="@+id/forget"
-                    android:layout_below="@+id/password"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Forget Password?"
-                    android:textColor="@color/white"
-                    android:layout_marginTop="10dp"
+                    android:layout_below="@+id/password"
                     android:layout_alignParentEnd="true"
-                    />
+                    android:layout_marginTop="10dp"
+                    android:text="Forget Password?"
+                    android:textColor="@color/white" />
 
                 <Button
-                    android:layout_marginTop="100dp"
+                    android:id="@+id/LoginButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Login"
-                    android:textStyle="bold"
-                    android:textColor="#03A9F4"
-                    android:id="@+id/LoginButton"
                     android:layout_below="@+id/forget"
+                    android:layout_marginTop="150dp"
                     android:background="@drawable/rounded_full_button"
-                    />
+                    android:text="Login"
+                    android:textColor="#03A9F4"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/continueWith"
-                    android:layout_marginTop="16dp"
-                    android:layout_below="@+id/LoginButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/white"
-                    android:text="Or Continue With"
+                    android:layout_below="@+id/LoginButton"
                     android:layout_centerInParent="true"
-                    />
+                    android:layout_marginTop="16dp"
+                    android:text="Or Continue With"
+                    android:textColor="@color/white" />
 
                 <LinearLayout
                     android:id="@+id/google"
@@ -200,26 +189,24 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/backToLogin"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/backToLogin"
                     android:layout_below="@+id/google"
                     android:layout_centerInParent="true"
-                    android:layout_marginTop="16dp"
-                    >
+                    android:layout_marginTop="16dp">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Don't Have Account?  "
-                        android:textColor="@color/white"
-                        />
+                        android:textColor="@color/white" />
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="SignUp"
-                        android:textColor="#03A9F4"
-                        />
+                        android:textColor="#03A9F4" />
 
                 </LinearLayout>
 
