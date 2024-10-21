@@ -22,6 +22,11 @@
         android:icon="@drawable/ic_action_bookmark"
         />
     <item
+        android:id="@+id/test"
+        android:title="Test"
+        android:icon="@drawable/ic_action_eye"
+        />
+    <item
         android:id="@+id/profile"
         android:title="Profile"
         android:icon="@drawable/ic_action_profile"

@@ -1,0 +1,8 @@
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Bottom border line -->
+    <item android:bottom="0dp"> <!-- Position the line at the bottom -->
+        <shape android:shape="line">
+            <stroke android:width="1dp" android:color="#FFFDFD" /> <!-- Line thickness and color -->
+        </shape>
+    </item>
+</layer-list>

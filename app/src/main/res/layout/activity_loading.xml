@@ -1,26 +1,32 @@
-<?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Loading">
-    <ProgressBar
-        android:id="@+id/progressBar"
-        android:layout_width="wrap_content"
+
+    <ImageView
+        android:id="@+id/flicker"
+        android:layout_gravity="center"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:src="@drawable/rounded_full" />
+
+    <View
+        android:id="@+id/loader"
+        android:layout_gravity="center"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@drawable/ic_action_spin" />
+
+    <TextView
+        android:id="@+id/loadingText"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="16dp"
-        android:layout_centerInParent="true"
-        android:visibility="visible"
-        android:indeterminate="true"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        android:layout_gravity="center_horizontal|bottom"
+        android:text="Loading Movies..."
+        android:textSize="18sp"
+        android:textColor="#7C34FB"
+        android:gravity="center"
+        android:padding="16dp" />
 
-        />
-
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>

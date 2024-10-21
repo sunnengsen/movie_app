@@ -11,12 +11,5 @@
         android:layout_height="match_parent"
         android:textSize="30sp"
         android:text="Home" />
-    <ProgressBar
-        android:id="@+id/progressBar"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="center"
-        android:visibility="gone"
-        android:indeterminate="true" />
 
 </FrameLayout>
