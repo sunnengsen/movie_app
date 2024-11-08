@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.movieapp.adapters.CategoryAdapter
 import com.example.movieapp.services.CategoryService
 
+
 class Category : Fragment() {
 
     private lateinit var categoryRecyclerView: RecyclerView
@@ -26,7 +27,7 @@ class Category : Fragment() {
         val view = inflater.inflate(R.layout.fragment_category, container, false)
 
         categoryRecyclerView = view.findViewById(R.id.recyclerView)
-        progressBar = view.findViewById(R.id.progressBar)
+//        progressBar = view.findViewById(R.id.progressBar)
         categoryRecyclerView.layoutManager = GridLayoutManager(context, 2)
 
         loadCategories()

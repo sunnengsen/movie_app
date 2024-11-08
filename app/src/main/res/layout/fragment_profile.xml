@@ -17,7 +17,7 @@
         <ImageView
             android:layout_width="59dp"
             android:layout_height="match_parent"
-            android:src="@drawable/ic_back1" />
+            android:src="@drawable/ic_action_back_button" />
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -30,7 +30,7 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:src="@drawable/ic_setting2" />
+            android:src="@drawable/ic_action_bookmark" />
     </LinearLayout>
 
     <!-- Profile -->
@@ -45,7 +45,7 @@
         <ImageView
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:src="@drawable/jennie"
+            android:src="@drawable/background"
             android:contentDescription="Kim Jennie"
             android:scaleType="centerCrop"
             android:layout_gravity="center" />
@@ -141,7 +141,7 @@
         <ImageView
             android:layout_width="70dp"
             android:layout_height="match_parent"
-            android:src="@drawable/ic_blackeye" />
+            android:src="@drawable/ic_action_eye" />
     </LinearLayout>
 
     <!-- Logout Button -->
