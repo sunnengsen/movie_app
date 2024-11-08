@@ -87,6 +87,14 @@
             android:layout_marginBottom="10dp" />
 
         <!-- Phone Number -->
+        <View
+            android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#000000"
+        android:layout_marginTop="-5dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginEnd="19dp" >
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -98,6 +106,14 @@
             android:layout_height="wrap_content"
             android:text="+6281234567890"
             android:layout_marginBottom="10dp" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#000000"
+            android:layout_marginTop="-5dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginStart="1dp"
+            android:layout_marginEnd="19dp" >
 
         <!-- Website -->
         <TextView
@@ -112,6 +128,14 @@
             android:text="www.blackpink.com"
             android:textColor="@color/black"
             android:autoLink="web" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#000000"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginStart="1dp"
+            android:layout_marginEnd="19dp" >
     </LinearLayout>
 
     <!-- Security Info Section -->
@@ -123,25 +147,34 @@
         android:gravity="center_vertical">
 
         <!-- Password Label -->
-        <TextView
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Password"
-            android:textStyle="bold" />
+            android:orientation="vertical">
 
-        <!-- Password (Masked) -->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="********"
-            android:layout_marginStart="10dp"
-            android:layout_weight="1" />
+            <!-- Password Label -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Password"
+                android:textStyle="bold"
+                android:textSize="16sp" />
 
-        <!-- Toggle Visibility Icon -->
-        <ImageView
-            android:layout_width="70dp"
-            android:layout_height="match_parent"
-            android:src="@drawable/ic_blackeye" />
+            <!-- Masked Password -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="********"
+                android:textSize="16sp"
+                android:layout_marginTop="3dp"
+                android:drawableEnd="@drawable/ic_blackeye"
+                android:drawablePadding="300dp"
+            />
+
+
+
+        </LinearLayout>
+
     </LinearLayout>
 
     <!-- Logout Button -->
