@@ -1,6 +1,5 @@
-package com.example.movieapp.viewmodel
+package com.example.movieapp.ui.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -8,7 +7,7 @@ import com.example.movieapp.models.Movie
 import com.example.movieapp.models.ApiState
 import com.example.movieapp.api.ApiManager
 import com.example.movieapp.models.State
-import com.example.movieapp.models.MovieResponse
+import kotlin.math.log
 
 class MovieViewModel: ViewModel() {
 
@@ -21,10 +20,11 @@ class MovieViewModel: ViewModel() {
         ApiManager.getInstance().getMovies { response: MutableList<out Movie>?, error: Exception? ->
             if (error != null) {
                 _movies.value = ApiState(state = State.error, data = null)
-                Log.e("MovieViewModel", "Error: $error")
+//                console
+                println("Error: $error")
             } else {
                 _movies.value = ApiState(state = State.success, data = response)
-                Log.d("MovieViewModel", "Movies: $response")
+               println("Response: $response")
             }
         }
     }

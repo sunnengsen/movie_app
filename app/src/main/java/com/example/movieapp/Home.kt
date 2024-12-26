@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.movieapp.adapters.MovieAdapter
 import com.example.movieapp.models.State
-import com.example.movieapp.viewmodel.MovieViewModel
+import com.example.movieapp.ui.viewmodel.MovieViewModel
 
 class Home : Fragment() {
 
