@@ -1,223 +1,212 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp">
 
-    <!-- Header -->
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_vertical"
-        android:layout_marginTop="10dp">
-
-        <!-- Settings icon1 -->
-        <ImageView
-            android:layout_width="59dp"
-            android:layout_height="match_parent"
-            android:src="@drawable/ic_action_back_button" />
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Profile"
-            android:textSize="24sp"
-            android:textStyle="bold" />
-
-        <!-- Settings icon2 -->
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:src="@drawable/ic_action_bookmark" />
-    </LinearLayout>
-
-    <!-- Profile -->
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:layout_marginTop="40dp">
+        android:layout_height="wrap_content">
 
-        <!-- Profile Image -->
-        <ImageView
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:src="@drawable/background"
-            android:contentDescription="Kim Jennie"
-            android:scaleType="centerCrop"
-            android:layout_gravity="center" />
-
-        <!-- Profile Name -->
-        <TextView
-            android:layout_width="wrap_content"
+        <!-- Header -->
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Kim Jennie"
-            android:textSize="20sp"
-            android:layout_marginTop="10dp" />
+            android:gravity="center_vertical"
+            android:layout_marginTop="10dp">
 
-        <!-- Information -->
-        <TextView
-            android:layout_width="wrap_content"
+            <!-- Back Icon -->
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/ic_action_back_button"
+                android:contentDescription="Back" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Profile"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:textColor="@color/black" />
+
+            <!-- Bookmark Icon -->
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/ic_action_bookmark"
+                android:contentDescription="Bookmark" />
+        </LinearLayout>
+
+        <!-- Profile Section -->
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Artist"
-            android:textSize="16sp"
-            android:textColor="#777" />
+            android:gravity="center"
+            android:layout_marginTop="40dp">
+
+            <!-- Profile Image -->
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:src="@drawable/background"
+                android:contentDescription="Profile Image"
+                android:scaleType="centerCrop"
+                android:layout_gravity="center"
+                android:background="@drawable/background" />
+
+            <!-- Profile Name -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Kim Jennie"
+                android:textSize="20sp"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/black" />
+
+            <!-- Information -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Artist"
+                android:textSize="16sp"
+                android:textColor="@color/teal_700" />
+        </LinearLayout>
+
+        <!-- Details Section -->
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp">
+
+            <!-- Email -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Email"
+                android:textStyle="bold"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="kim.jennie@gmail.com"
+                android:layout_marginBottom="10dp"
+                android:textColor="@color/teal_700" />
+
+            <!-- Phone Number -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Phone Number"
+                android:textStyle="bold"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="+6281234567890"
+                android:layout_marginBottom="10dp"
+                android:textColor="@color/teal_700" />
+
+            <!-- Website -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Website"
+                android:textStyle="bold"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="www.blackpink.com"
+                android:autoLink="web"
+                android:textColor="@color/teal_700" />
+        </LinearLayout>
+
+        <!-- Security Info Section -->
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:gravity="center_vertical">
+
+            <!-- Password Label -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Password"
+                android:textStyle="bold"
+                android:textColor="@color/black" />
+
+            <!-- Password (Masked) -->
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="********"
+                android:layout_marginStart="10dp"
+                android:textColor="@color/teal_700" />
+
+            <!-- Toggle Visibility Icon -->
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/ic_action_eye"
+                android:contentDescription="Toggle Password Visibility" />
+        </LinearLayout>
+
+        <!-- Logout Button -->
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Logout"
+            android:backgroundTint="@color/teal_700"
+            android:textColor="@color/white"
+            android:layout_marginTop="20dp" />
+
+        <!-- Bottom Navigation -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <!-- Home Button -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="20dp"
+                android:text="Home"
+                android:textSize="22sp"
+                android:textColor="@color/black" />
+
+            <!-- Bookmark Button -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="20dp"
+                android:text="Bookmark"
+                android:textSize="22sp"
+                android:textColor="@color/black" />
+
+            <!-- Profile Button -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Profile"
+                android:textColor="@color/teal_700"
+                android:textSize="22sp"
+                android:textStyle="bold" />
+        </LinearLayout>
     </LinearLayout>
-
-    <!-- Details -->
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp">
-
-        <!-- Email -->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Email"
-            android:textStyle="bold" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="kim.jennie@gmail.com"
-            android:layout_marginBottom="10dp" />
-
-        <!-- Phone Number -->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Phone Number"
-            android:textStyle="bold" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="+6281234567890"
-            android:layout_marginBottom="10dp" />
-
-        <!-- Website -->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Website"
-            android:textStyle="bold" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="www.blackpink.com"
-            android:autoLink="web" />
-    </LinearLayout>
-
-    <!-- Security Info Section -->
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:gravity="center_vertical">
-
-        <!-- Password Label -->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Password"
-            android:textStyle="bold" />
-
-        <!-- Password (Masked) -->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="********"
-            android:layout_marginStart="10dp"
-            android:layout_weight="1" />
-
-        <!-- Toggle Visibility Icon -->
-        <ImageView
-            android:layout_width="70dp"
-            android:layout_height="match_parent"
-            android:src="@drawable/ic_action_eye" />
-    </LinearLayout>
-
-    <!-- Logout Button -->
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Logout"
-        android:backgroundTint="#FF4081"
-        android:textColor="#FFF"
-        android:layout_marginTop="20dp" />
-
-    <!-- Bottom Navigation -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="42dp"
-        android:layout_marginTop="120dp"
-        android:gravity="center"
-        android:orientation="horizontal">
-
-        <!-- Home Button -->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="20dp"
-            android:text="Home"
-            android:textSize="22sp" />
-
-        <!-- Bookmark Button -->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="20dp"
-            android:text="Bookmark"
-            android:textSize="22sp" />
-
-        <!-- Profile Button  -->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Profile"
-            android:textColor="#FF4081"
-            android:textSize="22sp"
-            android:textStyle="bold" />
-    </LinearLayout>
-    <!-- Bottom Navigation Section -->
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:gravity="center">
-
-        <!-- Home Navigation -->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Home"
-            android:textSize="16sp"
-            android:layout_marginEnd="20dp" />
-
-        <!-- Bookmark Navigation -->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Bookmark"
-            android:textSize="16sp"
-            android:layout_marginEnd="20dp" />
-
-        <!-- Profile Navigation (Highlighted) -->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Profile"
-            android:textSize="16sp"
-            android:textColor="#FF4081"
-            android:textStyle="bold" />
-    </LinearLayout>
-
-</LinearLayout>
+</ScrollView>

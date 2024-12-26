@@ -7,28 +7,28 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.movieapp.R
-import com.example.movieapp.data.model.Movie
+import com.example.movieapp.data.model.MovieModel
 import com.squareup.picasso.Picasso
 
-class MovieAdapter(private val movies: List<Movie>) :
-    RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
+class RecommendAdapter(private val randomMovies: List<MovieModel>) :
+    RecyclerView.Adapter<RecommendAdapter.RecommendViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecommendViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.view_holder_item, parent, false)
-        return MovieViewHolder(view)
+        return RecommendViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
-        val movie = movies[position]
+    override fun onBindViewHolder(holder: RecommendViewHolder, position: Int) {
+        val movie = randomMovies[position]
         holder.movieTitle.text = movie.title
         Picasso.get().load(movie.posterUrl).into(holder.movieImage)
     }
 
     override fun getItemCount(): Int {
-        return movies.size
+        return randomMovies.size
     }
 
-    class MovieViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    class RecommendViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val movieImage: ImageView = itemView.findViewById(R.id.movieImage)
         val movieTitle: TextView = itemView.findViewById(R.id.movieTitle)
     }

@@ -1,11 +1,11 @@
 package com.example.movieapp.data.model
 
-class Movie {
-    var id: Int = 0
-    var title: String = ""
-    var description: String? = null
-    var releaseDate: String? = null
-    var posterUrl: String = ""
-    var rating: String? = null
-    var movieType: MovieType? = null
-}
+data class Movie(
+    val id: Int,
+    val title: String,
+    val description: String?,
+    val releaseDate: String?,
+    val posterUrl: String,
+    val rating: String?,
+    val movieType: MovieType
+)

@@ -1,4 +1,6 @@
 package com.example.movieapp.data.model.auth
 
-class LoginResponse {
-}
+data class LoginResponse(
+    val token: String,
+    val role: String
+)

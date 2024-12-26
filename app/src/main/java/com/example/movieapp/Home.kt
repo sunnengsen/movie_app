@@ -1,43 +1,77 @@
-package com.example.movieapp
+package com.example.movieapp.ui.element.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.example.movieapp.adapters.MovieAdapter
-import com.example.movieapp.models.State
-import com.example.movieapp.ui.viewmodel.MovieViewModel
+import com.example.movieapp.data.model.ApiState
+import com.example.movieapp.data.model.HomeData
+import com.example.movieapp.data.model.Status
+import com.example.movieapp.databinding.FragmentHomeBinding
+import com.example.movieapp.ui.element.adapter.LatestAdapter
+import com.example.movieapp.ui.element.adapter.RecommendAdapter
+import com.example.movieapp.ui.viewmodel.HomeViewModel
 
 class Home : Fragment() {
-
-    private lateinit var movieViewModel: MovieViewModel
-    private lateinit var recyclerView: RecyclerView
-    private lateinit var movieAdapter: MovieAdapter
+    private lateinit var binding: FragmentHomeBinding
+    private lateinit var viewModel: HomeViewModel
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_home, container, false)
-        recyclerView = view.findViewById(R.id.recyclerView)
-        recyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-        return view
+        binding = FragmentHomeBinding.inflate(inflater, container, false)
+        viewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
+        return binding.root
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        movieViewModel = ViewModelProvider(this).get(MovieViewModel::class.java)
-        movieViewModel.movies.observe(viewLifecycleOwner, Observer { apiState ->
-            if (apiState.state == State.success) {
-                movieAdapter = MovieAdapter(apiState.data ?: emptyList())
-                recyclerView.adapter = movieAdapter
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        binding.recyclerViewLatest.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        binding.recyclerViewRandom.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+
+        viewModel.homeData.observe(viewLifecycleOwner) { state ->
+            handleState(state)
+        }
+        viewModel.loadHomeData()
+    }
+
+    private fun handleState(state: ApiState<HomeData>) {
+        when (state.status) {
+            Status.LOADING -> showLoading()
+            Status.SUCCESS -> {
+                hideLoading()
+                showHomeData(state.data!!)
             }
-        })
-        movieViewModel.getMovies()
+            Status.ERROR -> {
+                hideLoading()
+                showAlert()
+            }
+        }
+    }
+
+    private fun showHomeData(homeData: HomeData) {
+        val latestAdapter = LatestAdapter(homeData.latestMovies)
+        binding.recyclerViewLatest.adapter = latestAdapter
+
+        val recommendAdapter = RecommendAdapter(homeData.randomMovies)
+        binding.recyclerViewRandom.adapter = recommendAdapter
+    }
+
+    private fun showLoading() {
+        // Implement loading UI
+    }
+
+    private fun hideLoading() {
+        // Hide loading UI
+    }
+
+    private fun showAlert() {
+        // Show error alert
     }
 }

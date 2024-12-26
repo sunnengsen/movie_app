@@ -4,7 +4,7 @@ class ApiResponse<T> (
     val status: String,
     val message: String,
     val data: T
-){
+) {
     fun isSuccessful(): Boolean {
         return status == "200"
     }
@@ -28,6 +28,4 @@ class ApiResponse<T> (
     fun isInternalServerError(): Boolean {
         return status == "500"
     }
-
-
 }

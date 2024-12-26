@@ -1,30 +1,38 @@
+// MovieViewModel.kt
 package com.example.movieapp.ui.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.movieapp.models.Movie
-import com.example.movieapp.models.ApiState
-import com.example.movieapp.api.ApiManager
-import com.example.movieapp.models.State
-import kotlin.math.log
+import androidx.lifecycle.viewModelScope
+import com.example.movieapp.data.api.client.ApiClient
+import com.example.movieapp.data.api.service.ApiService
+import com.example.movieapp.data.model.ApiState
+import com.example.movieapp.data.model.MovieData
+import kotlinx.coroutines.launch
 
-class MovieViewModel: ViewModel() {
+class MovieViewModel : ViewModel() {
+    private val _movieData = MutableLiveData<ApiState<MovieData>>()
+    val movieData: LiveData<ApiState<MovieData>> = _movieData
 
-    private val _movies = MutableLiveData<ApiState<List<Movie>>>()
-    val movies: LiveData<ApiState<List<Movie>>>
-        get() = _movies
-
-    fun getMovies() {
-        _movies.value = ApiState(state = State.loading, data = null)
-        ApiManager.getInstance().getMovies { response: MutableList<out Movie>?, error: Exception? ->
-            if (error != null) {
-                _movies.value = ApiState(state = State.error, data = null)
-//                console
-                println("Error: $error")
-            } else {
-                _movies.value = ApiState(state = State.success, data = response)
-               println("Response: $response")
+    fun loadMovieData() {
+        _movieData.value = ApiState.loading()
+        viewModelScope.launch {
+            try {
+                val apiService = ApiClient.get().apiService
+                val response = apiService.loadMovieData()
+                Log.d("MovieViewModel", "API Response: $response")
+                if (response.status == "200") {
+                    _movieData.value = ApiState.success(response.data)
+                    Log.d("MovieViewModel", "Data loaded successfully: ${response.data}")
+                } else {
+                    _movieData.value = ApiState.error(response.message ?: "Unknown error")
+                    Log.d("MovieViewModel", "Error: ${response.message}")
+                }
+            } catch (e: Exception) {
+                _movieData.value = ApiState.error(e.message ?: "Unknown error")
+                Log.d("MovieViewModel", "Error loading data: ${e.message}")
             }
         }
     }

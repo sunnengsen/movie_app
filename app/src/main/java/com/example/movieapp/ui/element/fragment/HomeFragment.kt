@@ -4,18 +4,20 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.movieapp.data.model.ApiState
 import com.example.movieapp.data.model.HomeData
 import com.example.movieapp.data.model.Status
 import com.example.movieapp.databinding.FragmentHomeBinding
 import com.example.movieapp.ui.element.adapter.LatestAdapter
+import com.example.movieapp.ui.element.adapter.RecommendAdapter
 import com.example.movieapp.ui.viewmodel.HomeViewModel
 
-class HomeFragment: BaseFragment() {
+class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
-    private val viewModel by viewModels<HomeViewModel>()
+    private lateinit var viewModel: HomeViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -23,13 +25,15 @@ class HomeFragment: BaseFragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentHomeBinding.inflate(inflater, container, false)
+        viewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.recyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        binding.recyclerViewLatest.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        binding.recyclerViewRandom.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
 
         viewModel.homeData.observe(viewLifecycleOwner) { state ->
             handleState(state)
@@ -48,12 +52,26 @@ class HomeFragment: BaseFragment() {
                 hideLoading()
                 showAlert()
             }
-            else -> {}
         }
     }
 
     private fun showHomeData(homeData: HomeData) {
-        val adapter = LatestAdapter(homeData.latestMovies)
-        binding.recyclerView.adapter = adapter
+        val latestAdapter = LatestAdapter(homeData.latestMovies)
+        binding.recyclerViewLatest.adapter = latestAdapter
+
+        val recommendAdapter = RecommendAdapter(homeData.randomMovies)
+        binding.recyclerViewRandom.adapter = recommendAdapter
+    }
+
+    private fun showLoading() {
+        // Implement loading UI
+    }
+
+    private fun hideLoading() {
+        // Hide loading UI
+    }
+
+    private fun showAlert() {
+        // Show error alert
     }
 }
