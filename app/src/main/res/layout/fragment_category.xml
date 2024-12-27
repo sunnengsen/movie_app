@@ -6,86 +6,246 @@
     android:layout_height="match_parent"
     tools:context=".ui.element.fragment.MovieFragment">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:paddingHorizontal="10dp">
+   <ScrollView
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       >
+       <RelativeLayout
+           android:layout_width="match_parent"
+           android:layout_height="match_parent"
+           android:paddingHorizontal="10dp">
 
-        <LinearLayout
-            android:id="@+id/search"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:background="@drawable/rounded_full"
-            android:orientation="horizontal"
-            android:paddingHorizontal="16dp">
+           <!--        <LinearLayout-->
+           <!--            android:id="@+id/search"-->
+           <!--            android:layout_width="match_parent"-->
+           <!--            android:layout_height="wrap_content"-->
+           <!--            android:layout_marginTop="16dp"-->
+           <!--            android:background="@drawable/rounded_full"-->
+           <!--            android:orientation="horizontal"-->
+           <!--            android:paddingHorizontal="16dp">-->
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:contentDescription="Search Icon"
-                android:src="@drawable/ic_action_search" />
+           <!--            <ImageView-->
+           <!--                android:layout_width="wrap_content"-->
+           <!--                android:layout_height="wrap_content"-->
+           <!--                android:layout_gravity="center"-->
+           <!--                android:contentDescription="Search Icon"-->
+           <!--                android:src="@drawable/ic_action_search" />-->
 
-            <EditText
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:hint="Search..."
-                android:inputType="text"
-                android:padding="16dp" />
+           <!--            <EditText-->
+           <!--                android:layout_width="0dp"-->
+           <!--                android:layout_height="wrap_content"-->
+           <!--                android:layout_weight="1"-->
+           <!--                android:hint="Search..."-->
+           <!--                android:inputType="text"-->
+           <!--                android:padding="16dp" />-->
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:contentDescription="Cancel Icon"
-                android:src="@drawable/ic_action_cancel" />
-        </LinearLayout>
+           <!--            <ImageView-->
+           <!--                android:layout_width="wrap_content"-->
+           <!--                android:layout_height="wrap_content"-->
+           <!--                android:layout_gravity="center"-->
+           <!--                android:contentDescription="Cancel Icon"-->
+           <!--                android:src="@drawable/ic_action_cancel" />-->
+           <!--        </LinearLayout>-->
 
-        <TextView
-            android:id="@+id/tvShow"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/search"
-            android:layout_marginTop="16dp"
-            android:layout_marginHorizontal="16dp"
-            android:layout_marginBottom="5dp"
-            android:text="DRAMA"
-            android:textColor="@color/purple_200"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+           <TextView
+               android:id="@+id/tvShow"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_marginTop="16dp"
+               android:layout_marginHorizontal="16dp"
+               android:layout_marginBottom="5dp"
+               android:text="DRAMA"
+               android:textColor="@color/purple_200"
+               android:textSize="20sp"
+               android:textStyle="bold" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerViewDrama"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/tvShow"
-            android:clipToPadding="false"
-            android:padding="4dp"
-            android:scrollbars="vertical" />
+           <androidx.recyclerview.widget.RecyclerView
+               android:id="@+id/recyclerViewDrama"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:layout_below="@id/tvShow"
+               android:clipToPadding="false"
+               android:padding="4dp"
+               android:scrollbars="vertical" />
 
-        <TextView
-            android:id="@+id/action"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/recyclerViewDrama"
-            android:layout_marginTop="16dp"
-            android:layout_marginHorizontal="16dp"
-            android:layout_marginBottom="5dp"
-            android:text="Action"
-            android:textColor="@color/purple_200"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+           <TextView
+               android:id="@+id/action"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_below="@id/recyclerViewDrama"
+               android:layout_marginTop="16dp"
+               android:layout_marginHorizontal="16dp"
+               android:layout_marginBottom="5dp"
+               android:text="Action"
+               android:textColor="@color/purple_200"
+               android:textSize="20sp"
+               android:textStyle="bold" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerViewAction"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/action"
-            android:clipToPadding="false"
-            android:padding="4dp"
-            android:scrollbars="vertical" />
-    </RelativeLayout>
+           <androidx.recyclerview.widget.RecyclerView
+               android:id="@+id/recyclerViewAction"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:layout_below="@id/action"
+               android:clipToPadding="false"
+               android:padding="4dp"
+               android:scrollbars="vertical" />
+
+           <TextView
+               android:id="@+id/comedy"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_below="@id/recyclerViewAction"
+               android:layout_marginTop="16dp"
+               android:layout_marginHorizontal="16dp"
+               android:layout_marginBottom="5dp"
+               android:text="Comedy"
+               android:textColor="@color/purple_200"
+               android:textSize="20sp"
+               android:textStyle="bold" />
+
+           <androidx.recyclerview.widget.RecyclerView
+               android:id="@+id/recyclerViewComedy"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:layout_below="@id/comedy"
+               android:clipToPadding="false"
+               android:padding="4dp"
+               android:scrollbars="vertical" />
+
+           <TextView
+               android:id="@+id/thriller"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_below="@id/recyclerViewComedy"
+               android:layout_marginTop="16dp"
+               android:layout_marginHorizontal="16dp"
+               android:layout_marginBottom="5dp"
+               android:text="Thriller"
+               android:textColor="@color/purple_200"
+               android:textSize="20sp"
+               android:textStyle="bold" />
+
+           <androidx.recyclerview.widget.RecyclerView
+               android:id="@+id/recyclerViewThriller"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:layout_below="@id/thriller"
+               android:clipToPadding="false"
+               android:padding="4dp"
+               android:scrollbars="vertical" />
+
+           <TextView
+               android:id="@+id/fantasy"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_below="@id/recyclerViewThriller"
+               android:layout_marginTop="16dp"
+               android:layout_marginHorizontal="16dp"
+               android:layout_marginBottom="5dp"
+               android:text="Fantasy"
+               android:textColor="@color/purple_200"
+               android:textSize="20sp"
+               android:textStyle="bold" />
+
+           <androidx.recyclerview.widget.RecyclerView
+               android:id="@+id/recyclerViewFantasy"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:layout_below="@id/fantasy"
+               android:clipToPadding="false"
+               android:padding="4dp"
+               android:scrollbars="vertical" />
+
+           <TextView
+               android:id="@+id/horror"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_below="@id/recyclerViewFantasy"
+               android:layout_marginTop="16dp"
+               android:layout_marginHorizontal="16dp"
+               android:layout_marginBottom="5dp"
+               android:text="Horror"
+               android:textColor="@color/purple_200"
+               android:textSize="20sp"
+               android:textStyle="bold" />
+
+           <androidx.recyclerview.widget.RecyclerView
+               android:id="@+id/recyclerViewHorror"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:layout_below="@id/horror"
+               android:clipToPadding="false"
+               android:padding="4dp"
+               android:scrollbars="vertical" />
+
+           <TextView
+               android:id="@+id/musical"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_below="@id/recyclerViewHorror"
+               android:layout_marginTop="16dp"
+               android:layout_marginHorizontal="16dp"
+               android:layout_marginBottom="5dp"
+               android:text="Musical"
+               android:textColor="@color/purple_200"
+               android:textSize="20sp"
+               android:textStyle="bold" />
+
+           <androidx.recyclerview.widget.RecyclerView
+               android:id="@+id/recyclerViewMusical"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:layout_below="@id/musical"
+               android:clipToPadding="false"
+               android:padding="4dp"
+               android:scrollbars="vertical" />
+
+           <TextView
+               android:id="@+id/romance"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_below="@id/recyclerViewMusical"
+               android:layout_marginTop="16dp"
+               android:layout_marginHorizontal="16dp"
+               android:layout_marginBottom="5dp"
+               android:text="Romance"
+               android:textColor="@color/purple_200"
+               android:textSize="20sp"
+               android:textStyle="bold" />
+
+           <androidx.recyclerview.widget.RecyclerView
+               android:id="@+id/recyclerViewRomance"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:layout_below="@id/romance"
+               android:clipToPadding="false"
+               android:padding="4dp"
+               android:scrollbars="vertical" />
+
+           <TextView
+               android:id="@+id/adventure"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_below="@id/recyclerViewRomance"
+               android:layout_marginTop="16dp"
+               android:layout_marginHorizontal="16dp"
+               android:layout_marginBottom="5dp"
+               android:text="Adventure"
+               android:textColor="@color/purple_200"
+               android:textSize="20sp"
+               android:textStyle="bold" />
+
+           <androidx.recyclerview.widget.RecyclerView
+               android:id="@+id/recyclerViewAdventure"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:layout_below="@id/adventure"
+               android:clipToPadding="false"
+               android:padding="4dp"
+               android:scrollbars="vertical" />
+
+
+       </RelativeLayout>
+   </ScrollView>
 
 </FrameLayout>

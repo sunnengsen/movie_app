@@ -1,8 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp">
+    tools:context=".ui.element.fragment.ProfileFragment"
+    android:padding="16dp"
+    >
 
     <LinearLayout
         android:orientation="vertical"
@@ -14,32 +16,19 @@
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:layout_marginTop="10dp">
+            android:gravity="center_vertical">
 
-            <!-- Back Icon -->
-            <ImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:src="@drawable/ic_action_back_button"
-                android:contentDescription="Back" />
+
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Profile"
-                android:textSize="24sp"
+                android:textSize="20sp"
                 android:textStyle="bold"
                 android:gravity="center"
-                android:textColor="@color/black" />
-
-            <!-- Bookmark Icon -->
-            <ImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:src="@drawable/ic_action_bookmark"
-                android:contentDescription="Bookmark" />
+                android:textColor="@color/white" />
         </LinearLayout>
 
         <!-- Profile Section -->
@@ -52,6 +41,7 @@
 
             <!-- Profile Image -->
             <ImageView
+                android:id="@+id/profileImage"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:src="@drawable/background"
@@ -62,15 +52,17 @@
 
             <!-- Profile Name -->
             <TextView
+                android:id="@+id/profileName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Kim Jennie"
                 android:textSize="20sp"
                 android:layout_marginTop="10dp"
-                android:textColor="@color/black" />
+                android:textColor="@color/white" />
 
             <!-- Information -->
             <TextView
+                android:id="@+id/profileRole"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Artist"
@@ -91,9 +83,10 @@
                 android:layout_height="wrap_content"
                 android:text="Email"
                 android:textStyle="bold"
-                android:textColor="@color/black" />
+                android:textColor="@color/white" />
 
             <TextView
+                android:id="@+id/profileEmail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="kim.jennie@gmail.com"
@@ -106,7 +99,7 @@
                 android:layout_height="wrap_content"
                 android:text="Phone Number"
                 android:textStyle="bold"
-                android:textColor="@color/black" />
+                android:textColor="@color/white" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -121,7 +114,7 @@
                 android:layout_height="wrap_content"
                 android:text="Website"
                 android:textStyle="bold"
-                android:textColor="@color/black" />
+                android:textColor="@color/white" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -145,7 +138,7 @@
                 android:layout_height="wrap_content"
                 android:text="Password"
                 android:textStyle="bold"
-                android:textColor="@color/black" />
+                android:textColor="@color/white" />
 
             <!-- Password (Masked) -->
             <TextView
@@ -157,15 +150,12 @@
                 android:textColor="@color/teal_700" />
 
             <!-- Toggle Visibility Icon -->
-            <ImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:src="@drawable/ic_action_eye"
-                android:contentDescription="Toggle Password Visibility" />
+
         </LinearLayout>
 
         <!-- Logout Button -->
         <Button
+            android:id="@+id/logoutButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Logout"
@@ -173,40 +163,15 @@
             android:textColor="@color/white"
             android:layout_marginTop="20dp" />
 
-        <!-- Bottom Navigation -->
-        <LinearLayout
+        <Button
+            android:id="@+id/loginButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
-            android:gravity="center"
-            android:orientation="horizontal">
+            android:text="Login"
+            android:backgroundTint="@color/teal_700"
+            android:textColor="@color/white"
+            />
 
-            <!-- Home Button -->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="20dp"
-                android:text="Home"
-                android:textSize="22sp"
-                android:textColor="@color/black" />
 
-            <!-- Bookmark Button -->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="20dp"
-                android:text="Bookmark"
-                android:textSize="22sp"
-                android:textColor="@color/black" />
-
-            <!-- Profile Button -->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Profile"
-                android:textColor="@color/teal_700"
-                android:textSize="22sp"
-                android:textStyle="bold" />
-        </LinearLayout>
     </LinearLayout>
-</ScrollView>
+</FrameLayout>

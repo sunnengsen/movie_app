@@ -34,6 +34,13 @@ class MovieFragment : Fragment() {
 
         binding.recyclerViewDrama.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         binding.recyclerViewAction.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        binding.recyclerViewComedy.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        binding.recyclerViewThriller.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        binding.recyclerViewFantasy.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        binding.recyclerViewHorror.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        binding.recyclerViewMusical.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        binding.recyclerViewRomance.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        binding.recyclerViewAdventure.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
 
         viewModel.dramaMovies.observe(viewLifecycleOwner) { state ->
             handleState(state, binding.recyclerViewDrama)
@@ -43,8 +50,43 @@ class MovieFragment : Fragment() {
             handleState(state, binding.recyclerViewAction)
         }
 
+        viewModel.comedyMovies.observe(viewLifecycleOwner) { state ->
+            handleState(state, binding.recyclerViewComedy)
+        }
+
+        viewModel.thrillerMovies.observe(viewLifecycleOwner) { state ->
+            handleState(state, binding.recyclerViewThriller)
+        }
+
+        viewModel.fantasyMovies.observe(viewLifecycleOwner) { state ->
+            handleState(state, binding.recyclerViewFantasy)
+        }
+
+        viewModel.horrorMovies.observe(viewLifecycleOwner) { state ->
+            handleState(state, binding.recyclerViewHorror)
+        }
+
+        viewModel.musicalMovies.observe(viewLifecycleOwner) { state ->
+            handleState(state, binding.recyclerViewMusical)
+        }
+
+        viewModel.romanceMovies.observe(viewLifecycleOwner) { state ->
+            handleState(state, binding.recyclerViewRomance)
+        }
+
+        viewModel.adventureMovies.observe(viewLifecycleOwner) { state ->
+            handleState(state, binding.recyclerViewAdventure)
+        }
+
         viewModel.loadDrama()
         viewModel.loadAction()
+        viewModel.loadComedy()
+        viewModel.loadThriller()
+        viewModel.loadFantasy()
+        viewModel.loadHorror()
+        viewModel.loadMusical()
+        viewModel.loadRomance()
+        viewModel.loadAdventure()
     }
 
     private fun handleState(state: ApiState<List<Movie>>, recyclerView: RecyclerView) {

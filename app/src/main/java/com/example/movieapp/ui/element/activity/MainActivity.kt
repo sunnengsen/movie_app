@@ -3,14 +3,13 @@ package com.example.movieapp.ui.element.activity
 import android.os.Bundle
 
 import androidx.fragment.app.Fragment
-import com.example.movieapp.Bookmark
 
-import com.example.movieapp.Profile
 import com.example.movieapp.R
-import com.example.movieapp.Test
 import com.example.movieapp.databinding.ActivityMainBinding
 import com.example.movieapp.ui.element.fragment.MovieFragment
 import com.example.movieapp.ui.element.fragment.HomeFragment
+import com.example.movieapp.ui.element.fragment.ProfileFragment
+import com.example.movieapp.ui.element.fragment.SearchFragment
 import com.example.movieapp.ui.viewmodel.AllMovieViewModel
 import com.example.movieapp.ui.viewmodel.HomeViewModel
 import com.example.movieapp.ui.viewmodel.MovieViewModel
@@ -35,15 +34,15 @@ class MainActivity : BaseActivity() {
                         true
                     }
                     R.id.bookmarks -> {
-                        replaceFragment(Bookmark())
+                        replaceFragment(SearchFragment())
                         true
                     }
                     R.id.test -> {
-                        replaceFragment(Test())
+                        replaceFragment(SearchFragment())
                         true
                     }
                     R.id.profile -> {
-                        replaceFragment(Profile())
+                        replaceFragment(ProfileFragment())
                         true
                     }
                     else -> false
@@ -52,7 +51,7 @@ class MainActivity : BaseActivity() {
 
         HomeViewModel().loadHomeData()
         MovieViewModel().loadMovieData()
-        AllMovieViewModel().loadDrama()
+        AllMovieViewModel().loadAllMovie()
     }
     private fun replaceFragment(fragment: Fragment){
         val fragmentManager = supportFragmentManager
