@@ -17,18 +17,47 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    signingConfigs {
+        create("release") {
+            storeFile = file("/Users/seamengsrun/Desktop/Movie.jks")
+            storePassword = "123456"
+            keyAlias = "Movie"
+            keyPassword = "123456"
+        }
+    }
+
     buildTypes {
         release {
-            isMinifyEnabled = false
+            signingConfig = signingConfigs.getByName("release")
+            isMinifyEnabled = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
         }
     }
+
+    flavorDimensions += "Movie"
+    productFlavors {
+        create("dev") {
+            dimension = "Movie"
+            applicationId = "com.example.movieapp.dev"
+            resValue("string", "app_name", "Movie Dev")
+            buildConfigField("String", "API_BASE_URL", "\"http://10.0.2.2:8080/\"")
+        }
+        create("prd") {
+            dimension = "Movie"
+            applicationId = "com.example.movieapp.prd"
+            resValue("string", "app_name", "Movie prd")
+            buildConfigField("String", "API_BASE_URL", "\"http://10.0.2.2:8080/\"")
+        }
+    }
+
     buildFeatures {
         viewBinding = true
+        buildConfig = true
     }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17

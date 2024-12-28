@@ -9,9 +9,7 @@ import com.example.movieapp.data.model.ApiResponse
 import com.example.movieapp.data.model.ApiState
 import com.example.movieapp.data.model.auth.LoginRequest
 import com.example.movieapp.data.model.auth.LoginResponse
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 class LoginViewModel : ViewModel() {
     private val _loginData = MutableLiveData<ApiState<LoginResponse>>()
