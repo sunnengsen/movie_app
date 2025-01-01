@@ -8,11 +8,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.movieapp.R
 import com.example.movieapp.data.model.Status
 import com.example.movieapp.databinding.FragmentProfileBinding
 import com.example.movieapp.ui.element.activity.LoginActivity
 import com.example.movieapp.ui.element.activity.MainActivity
+import com.example.movieapp.ui.element.adapter.BookmarkAdapter
 import com.example.movieapp.ui.viewmodel.ProfileViewModel
 import com.squareup.picasso.Picasso
 
@@ -45,8 +48,10 @@ class ProfileFragment : Fragment() {
                         binding.profileName.text = profileData.username
                         binding.profileRole.text = profileData.role
                         binding.profileEmail.text = profileData.email
-//                        use profile image from api
                         Picasso.get().load(profileData.profileUrl).into(binding.profileImage)
+
+                        binding.recyclerViewBookmarks.layoutManager = GridLayoutManager(requireContext(), 1, LinearLayoutManager.VERTICAL, false)
+                        binding.recyclerViewBookmarks.adapter = BookmarkAdapter(profileData.bookmarks ?: emptyList())
                     }
                 }
                 Status.ERROR -> {
@@ -71,13 +76,8 @@ class ProfileFragment : Fragment() {
                 remove("auth_token")
                 apply()
             }
-//            startActivity(Intent(requireContext(), LoginActivity::class.java))
-//            requireActivity().finish()
-//            navigate to HomeFragment
-
             startActivity(Intent(requireContext(), MainActivity::class.java))
             requireActivity().finish()
         }
-
     }
 }

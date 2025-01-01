@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:cardBackgroundColor="@color/black"
+    app:cardCornerRadius="8dp"
+    android:layout_marginVertical="5dp"
+    app:cardElevation="4dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp">
+
+        <!-- Actor Image -->
+<!--        <ImageView-->
+<!--            android:id="@+id/actorImage"-->
+<!--            android:layout_width="100dp"-->
+<!--            android:layout_height="100dp"-->
+<!--            android:layout_alignParentStart="true"-->
+<!--            android:layout_centerVertical="true"-->
+<!--            android:contentDescription="Actor Image"-->
+<!--            android:scaleType="centerCrop"-->
+<!--            app:cardCornerRadius="8dp" />-->
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/actorImage"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:scaleType="centerCrop"
+            app:shapeAppearanceOverlay="@style/RoundedImageStyle"
+            tools:ignore="MissingConstraints" />
+
+        <!-- Actor Name -->
+        <TextView
+            android:id="@+id/actorName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_toEndOf="@id/actorImage"
+            android:text="Actor Name"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+        <!--        birthDate-->
+        <TextView
+            android:id="@+id/birthDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/actorName"
+            android:layout_marginStart="16dp"
+            android:layout_toEndOf="@id/actorImage"
+            android:text="Birth Date"
+            android:textStyle="italic"
+            android:paddingVertical="5dp"
+            android:textColor="#A8FFFFFF"
+            android:textSize="14sp" />
+
+
+        <TextView
+            android:id="@+id/biographyActor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/birthDate"
+            android:layout_marginStart="16dp"
+            android:layout_toEndOf="@id/actorImage"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:text="Actor Role"
+            android:textColor="#A8FFFFFF"
+            android:textSize="14sp" />
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>

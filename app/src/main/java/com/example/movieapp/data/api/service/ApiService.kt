@@ -1,6 +1,9 @@
 package com.example.movieapp.data.api.service
 
+import com.example.movieapp.data.model.Actor
+import com.example.movieapp.data.model.ActorNDirectorData
 import com.example.movieapp.data.model.ApiResponse
+import com.example.movieapp.data.model.Director
 import com.example.movieapp.data.model.HomeData
 import com.example.movieapp.data.model.Movie
 import com.example.movieapp.data.model.MovieData
@@ -54,5 +57,11 @@ interface ApiService {
 
     @GET("profile")
     suspend fun loadProfile(@Header("Authorization") token: String): ApiResponse<ProfileData>
+
+    @GET("actor")
+    suspend fun loadActors(): ApiResponse<List<Actor>>
+
+    @GET("director")
+    suspend fun loadDirectors(): ApiResponse<List<Director>>
 
 }

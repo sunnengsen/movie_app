@@ -21,8 +21,8 @@
         android:icon="@drawable/ic_action_search"
         />
     <item
-        android:id="@+id/test"
-        android:title="Bookmarks"
+        android:id="@+id/actor"
+        android:title="Actor"
         android:icon="@drawable/ic_action_bookmark"
         />
     <item

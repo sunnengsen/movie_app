@@ -91,7 +91,9 @@ class MovieFragment : Fragment() {
 
     private fun handleState(state: ApiState<List<Movie>>, recyclerView: RecyclerView) {
         when (state.status) {
-            Status.LOADING -> showLoading()
+            Status.LOADING -> {
+                showLoading()
+            }
             Status.SUCCESS -> {
                 hideLoading()
                 showMovieData(state.data!!, recyclerView)

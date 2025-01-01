@@ -5,4 +5,13 @@
         <item name="cornerSize">10dp</item> <!-- Adjust corner size as needed -->
     </style>
 
+        <style name="Theme.AppCompat.Light.NoActionBar.FullScreen.Dark" parent="Theme.AppCompat">
+            <item name="android:windowFullscreen">true</item>
+            <item name="android:windowNoTitle">true</item>
+            <item name="android:colorBackground">#000000</item>
+            <item name="android:textColor">#FFFFFF</item>
+            <!-- Add other dark theme attributes as needed -->
+        </style>
+
+
 </resources>

@@ -20,7 +20,7 @@ class LatestAdapter(private val latestMovies: List<MovieModel>) :
 
     override fun onBindViewHolder(holder: LatestViewHolder, position: Int) {
         val movie = latestMovies[position]
-        holder.movieTitle.text = movie.title
+        holder.movieTitle.text = movie.rating
         Picasso.get().load(movie.posterUrl).into(holder.movieImage)
     }
 

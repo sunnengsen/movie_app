@@ -20,7 +20,7 @@ class RecommendAdapter(private val randomMovies: List<MovieModel>) :
 
     override fun onBindViewHolder(holder: RecommendViewHolder, position: Int) {
         val movie = randomMovies[position]
-        holder.movieTitle.text = movie.title
+        holder.movieTitle.text = movie.rating
         Picasso.get().load(movie.posterUrl).into(holder.movieImage)
     }
 

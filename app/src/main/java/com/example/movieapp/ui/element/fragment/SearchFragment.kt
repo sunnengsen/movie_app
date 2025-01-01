@@ -18,7 +18,7 @@ import com.example.movieapp.databinding.FragmentSearchBinding
 import com.example.movieapp.ui.element.adapter.MovieAdapter
 import com.example.movieapp.ui.viewmodel.AllMovieViewModel
 
-class SearchFragment : Fragment() {
+class SearchFragment : BaseFragment() {
     private lateinit var binding: FragmentSearchBinding
     private lateinit var viewModel: AllMovieViewModel
     private lateinit var adapter: MovieAdapter
@@ -89,15 +89,4 @@ class SearchFragment : Fragment() {
         showMovieData(filteredMovies)
     }
 
-    private fun showLoading() {
-        // Implement loading UI
-    }
-
-    private fun hideLoading() {
-        // Hide loading UI
-    }
-
-    private fun showAlert() {
-        // Show error alert
-    }
 }

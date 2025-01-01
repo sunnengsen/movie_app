@@ -43,7 +43,9 @@ class HomeFragment : Fragment() {
 
     private fun handleState(state: ApiState<HomeData>) {
         when (state.status) {
-            Status.LOADING -> showLoading()
+            Status.LOADING -> {
+                showLoading()
+            }
             Status.SUCCESS -> {
                 hideLoading()
                 showHomeData(state.data!!)
