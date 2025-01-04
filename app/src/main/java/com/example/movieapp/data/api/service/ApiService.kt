@@ -10,6 +10,7 @@ import com.example.movieapp.data.model.MovieData
 import com.example.movieapp.data.model.ProfileData
 import com.example.movieapp.data.model.auth.LoginRequest
 import com.example.movieapp.data.model.auth.LoginResponse
+import com.example.movieapp.data.model.auth.SignUpRequest
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.Header
@@ -18,6 +19,9 @@ import retrofit2.http.POST
 interface ApiService {
     @POST("auth/login")
     suspend fun login(@Body response: LoginRequest): ApiResponse<LoginResponse>
+
+    @POST("auth/signup")
+    suspend fun signUp(@Body response: SignUpRequest): ApiResponse<LoginResponse>
 
     @GET("home")
     suspend fun loadHomeData(): ApiResponse<HomeData>
