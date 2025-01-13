@@ -15,6 +15,7 @@ import com.example.movieapp.data.model.Status
 import com.example.movieapp.databinding.FragmentProfileBinding
 import com.example.movieapp.ui.element.activity.LoginActivity
 import com.example.movieapp.ui.element.activity.MainActivity
+import com.example.movieapp.ui.element.activity.MovieDetail
 import com.example.movieapp.ui.element.activity.SignUpActivity
 import com.example.movieapp.ui.element.adapter.BookmarkAdapter
 import com.example.movieapp.ui.viewmodel.ProfileViewModel
@@ -90,5 +91,16 @@ class ProfileFragment : Fragment() {
             startActivity(Intent(requireContext(), MainActivity::class.java))
             requireActivity().finish()
         }
+        binding.detail.setOnClickListener {
+            val sharedPreferences = requireContext().getSharedPreferences("MovieAppPrefs", Context.MODE_PRIVATE)
+            with(sharedPreferences.edit()) {
+                remove("auth_token")
+                apply()
+            }
+            startActivity(Intent(requireContext(), MovieDetail::class.java))
+            requireActivity().finish()
+        }
+
+
     }
 }

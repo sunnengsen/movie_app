@@ -38,6 +38,10 @@
             android:name=".ui.element.activity.PlayMovieActivity"
             android:exported="true" />
 
+        <activity
+            android:name=".ui.element.activity.MovieDetail"
+            android:exported="true" />
+
     </application>
 
 </manifest>

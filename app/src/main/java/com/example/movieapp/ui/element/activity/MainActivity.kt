@@ -66,9 +66,6 @@ class MainActivity : AppCompatActivity() {
             }
 
         HomeViewModel().loadHomeData()
-        MovieViewModel().loadMovieData()
-        AllMovieViewModel().loadAllMovie()
-        ActorDirectorViewModel().loadActor()
     }
 
     private fun replaceFragment(fragment: Fragment) {
