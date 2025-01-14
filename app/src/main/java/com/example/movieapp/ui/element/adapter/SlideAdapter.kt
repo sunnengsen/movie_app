@@ -1,5 +1,6 @@
 package com.example.movieapp.ui.element.adapter
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,6 +9,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.movieapp.R
 import com.example.movieapp.data.model.MovieModel
+import com.example.movieapp.ui.element.activity.MovieDetail
 import com.squareup.picasso.Picasso
 
 class SlideAdapter(private val slideMovie: List<MovieModel>) :
@@ -24,6 +26,12 @@ class SlideAdapter(private val slideMovie: List<MovieModel>) :
         holder.movieTitle.text = movie.title
         holder.movieDes.text = movie.description
         holder.releaseDate.text = movie.releaseDate
+        holder.itemView.setOnClickListener {
+            val context = holder.itemView.context
+            val intent = Intent(context, MovieDetail::class.java)
+            intent.putExtra("movieId", movie.id)
+            context.startActivity(intent)
+        }
     }
 
     override fun getItemCount(): Int {

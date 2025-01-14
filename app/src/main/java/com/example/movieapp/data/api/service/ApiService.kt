@@ -15,6 +15,7 @@ import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.POST
+import retrofit2.http.Path
 
 interface ApiService {
     @POST("auth/login")
@@ -67,5 +68,8 @@ interface ApiService {
 
     @GET("director")
     suspend fun loadDirectors(): ApiResponse<List<Director>>
+
+    @GET("movie/{id}")
+    suspend fun getMovieDetails(@Path("id") movieId: Int): ApiResponse<Movie>
 
 }

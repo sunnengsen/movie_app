@@ -1,5 +1,6 @@
 package com.example.movieapp.data.model
 
+
 data class Movie(
     val id: Int,
     val title: String,
@@ -7,6 +8,6 @@ data class Movie(
     val releaseDate: String?,
     val posterUrl: String,
     val rating: String?,
-    val movieType: MovieType?,
+    val movieTypeName: MovieType,
     val movieUrl: String?
 )

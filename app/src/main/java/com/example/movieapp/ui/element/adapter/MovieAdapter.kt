@@ -9,7 +9,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.movieapp.R
 import com.example.movieapp.data.model.Movie
-import com.example.movieapp.ui.element.activity.PlayMovieActivity
+import com.example.movieapp.ui.element.activity.MovieDetail
 import com.squareup.picasso.Picasso
 
 class MovieAdapter(private var movies: List<Movie>) :
@@ -22,12 +22,12 @@ class MovieAdapter(private var movies: List<Movie>) :
 
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
         val movie = movies[position]
-        holder.movieTitle.text = movie.rating
+        holder.movieTitle.text = movie.title
         Picasso.get().load(movie.posterUrl).into(holder.movieImage)
         holder.itemView.setOnClickListener {
             val context = holder.itemView.context
-            val intent = Intent(context, PlayMovieActivity::class.java).apply {
-                putExtra("MOVIE_URL", movie.movieUrl)
+            val intent = Intent(context, MovieDetail::class.java).apply {
+                putExtra("movieId", movie.id)
             }
             context.startActivity(intent)
         }

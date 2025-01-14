@@ -10,7 +10,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.movieapp.data.model.ApiState
 import com.example.movieapp.data.model.Movie
 import com.example.movieapp.data.model.Status
@@ -88,5 +87,4 @@ class SearchFragment : BaseFragment() {
         }
         showMovieData(filteredMovies)
     }
-
 }

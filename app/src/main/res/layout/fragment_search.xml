@@ -36,13 +36,6 @@
     </LinearLayout>
 
     <!-- RecyclerView for Search Results -->
-<!--    <androidx.recyclerview.widget.RecyclerView-->
-<!--        android:id="@+id/searchResultsRecyclerView"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="0dp"-->
-<!--        android:layout_weight="1"-->
-<!--        android:visibility="gone"-->
-<!--        tools:listitem="@layout/item_movie" />-->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerAllMovies"
         android:layout_width="match_parent"
