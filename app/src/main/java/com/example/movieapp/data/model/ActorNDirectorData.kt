@@ -18,7 +18,11 @@ data class Actor(
     val name: String,
     val birthDate: String,
     val profileUrl: String,
-    val biography: String
+    val biography: String,
+    val movies: List<MovieWrapper>
 )
 
-
+data class MovieWrapper(
+    val id: Int,
+    val movie: Movie
+)

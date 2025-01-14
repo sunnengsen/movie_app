@@ -5,12 +5,16 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.movieapp.R
 import com.example.movieapp.data.model.Actor
 import com.squareup.picasso.Picasso
 
 class ActorAdapter(private val actors: List<Actor>) : RecyclerView.Adapter<ActorAdapter.ActorViewHolder>() {
+
+    private val expandedPositions = mutableSetOf<Int>()
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ActorViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.view_holder_actor, parent, false)
         return ActorViewHolder(view)
@@ -18,11 +22,27 @@ class ActorAdapter(private val actors: List<Actor>) : RecyclerView.Adapter<Actor
 
     override fun onBindViewHolder(holder: ActorViewHolder, position: Int) {
         val actor = actors[position]
-        holder.actorName.text = actor.name
-        Picasso.get().load(actor.profileUrl).into(holder.actorImage)
-        holder.actorBiography.text = actor.biography
-        holder.actorBirthDate.text = actor.birthDate
+        with(holder) {
+            actorName.text = actor.name
+            Picasso.get().load(actor.profileUrl).into(actorImage)
+            actorBiography.text = actor.biography
+            actorBirthDate.text = actor.birthDate
 
+            val isExpanded = expandedPositions.contains(position)
+            recyclerViewMovies.visibility = if (isExpanded) View.VISIBLE else View.GONE
+
+            itemView.setOnClickListener {
+                if (isExpanded) {
+                    expandedPositions.remove(position)
+                } else {
+                    expandedPositions.add(position)
+                    val movieAdapter = MovieAdapter(actor.movies.map { it.movie })
+                    recyclerViewMovies.layoutManager = LinearLayoutManager(itemView.context, LinearLayoutManager.HORIZONTAL, false)
+                    recyclerViewMovies.adapter = movieAdapter
+                }
+                notifyDataSetChanged()
+            }
+        }
     }
 
     override fun getItemCount(): Int {
@@ -34,5 +54,6 @@ class ActorAdapter(private val actors: List<Actor>) : RecyclerView.Adapter<Actor
         val actorName: TextView = itemView.findViewById(R.id.actorName)
         val actorBiography: TextView = itemView.findViewById(R.id.biographyActor)
         val actorBirthDate: TextView = itemView.findViewById(R.id.birthDate)
+        val recyclerViewMovies: RecyclerView = itemView.findViewById(R.id.recyclerViewMovies)
     }
 }

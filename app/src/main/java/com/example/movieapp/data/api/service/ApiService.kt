@@ -33,7 +33,7 @@ interface ApiService {
     @GET("movie/type/Drama")
     suspend fun loadMovies(): ApiResponse<List<Movie>>
 
-    @GET("movie")
+    @GET("movie/all")
     suspend fun loadAllMovie(): ApiResponse<List<Movie>>
 
     @GET("movie/type/Action")

@@ -41,7 +41,7 @@ class MovieFragment : Fragment() {
         binding.recyclerViewMusical.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         binding.recyclerViewRomance.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         binding.recyclerViewAdventure.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-
+        binding.recyclerViewAll.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         viewModel.dramaMovies.observe(viewLifecycleOwner) { state ->
             handleState(state, binding.recyclerViewDrama)
         }
@@ -78,6 +78,10 @@ class MovieFragment : Fragment() {
             handleState(state, binding.recyclerViewAdventure)
         }
 
+        viewModel.allMovies.observe(viewLifecycleOwner) { state ->
+            handleState(state, binding.recyclerViewAll)
+        }
+
         viewModel.loadDrama()
         viewModel.loadAction()
         viewModel.loadComedy()
@@ -87,6 +91,8 @@ class MovieFragment : Fragment() {
         viewModel.loadMusical()
         viewModel.loadRomance()
         viewModel.loadAdventure()
+        viewModel.loadAllMovie()
+
     }
 
     private fun handleState(state: ApiState<List<Movie>>, recyclerView: RecyclerView) {

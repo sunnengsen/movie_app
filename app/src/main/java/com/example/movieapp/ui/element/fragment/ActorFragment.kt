@@ -12,7 +12,6 @@ import com.example.movieapp.R
 import com.example.movieapp.data.model.Actor
 import com.example.movieapp.data.model.ApiState
 import com.example.movieapp.data.model.Director
-import com.example.movieapp.data.model.Movie
 import com.example.movieapp.data.model.Status
 import com.example.movieapp.databinding.FragmentActorBinding
 import com.example.movieapp.ui.element.adapter.ActorAdapter
@@ -50,6 +49,7 @@ class ActorFragment: BaseFragment() {
         viewModel.loadActor()
         viewModel.loadDirector()
     }
+
     private fun handleState(state: ApiState<List<Actor>>, recyclerView: RecyclerView) {
         when (state.status) {
             Status.LOADING -> {
@@ -65,6 +65,7 @@ class ActorFragment: BaseFragment() {
             }
         }
     }
+
     private fun handleStates(state: ApiState<List<Director>>, recyclerView: RecyclerView) {
         when (state.status) {
             Status.LOADING -> {
@@ -80,16 +81,14 @@ class ActorFragment: BaseFragment() {
             }
         }
     }
+
     private fun showActorData(actors: List<Actor>, recyclerView: RecyclerView) {
         val adapter = ActorAdapter(actors)
         recyclerView.adapter = adapter
     }
+
     private fun showDirectorData(directors: List<Director>, recyclerView: RecyclerView) {
         val adapter = DirectorAdapter(directors)
         recyclerView.adapter = adapter
     }
-
-
-
-
 }

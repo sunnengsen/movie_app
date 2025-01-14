@@ -66,6 +66,7 @@ class MainActivity : AppCompatActivity() {
             }
 
         HomeViewModel().loadHomeData()
+        AllMovieViewModel().loadAllMovie()
     }
 
     private fun replaceFragment(fragment: Fragment) {

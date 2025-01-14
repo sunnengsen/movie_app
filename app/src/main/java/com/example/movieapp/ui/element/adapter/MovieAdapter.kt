@@ -22,7 +22,7 @@ class MovieAdapter(private var movies: List<Movie>) :
 
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
         val movie = movies[position]
-        holder.movieTitle.text = movie.title
+        holder.movieTitle.text = movie.rating
         Picasso.get().load(movie.posterUrl).into(holder.movieImage)
         holder.itemView.setOnClickListener {
             val context = holder.itemView.context
