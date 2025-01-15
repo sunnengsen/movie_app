@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity_signup">
+    tools:context=".ui.element.activity.SignUpActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -57,10 +57,41 @@
                 android:layout_marginTop="26dp">
 
                 <LinearLayout
+                    android:id="@+id/editTextName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/rounded_full"
+                    android:orientation="horizontal"
+                    android:paddingHorizontal="16dp">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:contentDescription="Email Icon"
+                        android:src="@drawable/ic_launcher_person_foreground" />
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:id="@+id/username"
+                        android:hint="Username"
+                        android:inputType="text"
+                        android:padding="16dp"
+                        android:textColor="@color/white"
+                        android:textColorHint="@color/white" />
+
+                </LinearLayout>
+
+
+                <LinearLayout
                     android:id="@+id/editTextEmail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
+                    android:layout_below="@+id/editTextName"
                     android:background="@drawable/rounded_full"
                     android:orientation="horizontal"
                     android:paddingHorizontal="16dp">
@@ -77,7 +108,8 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:autofillHints="emailAddress"
-                        android:hint="Email..."
+                        android:id="@+id/email"
+                        android:hint="Email"
                         android:inputType="textEmailAddress"
                         android:padding="16dp"
                         android:textColor="@color/white"
@@ -106,18 +138,12 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:hint="Password..."
+                        android:id="@+id/password"
+                        android:hint="Password"
                         android:inputType="textPassword"
                         android:padding="16dp"
                         android:textColor="@color/white"
                         android:textColorHint="@color/white" />
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:contentDescription="Eye Icon"
-                        android:src="@drawable/ic_action_eye" />
                 </LinearLayout>
                 <!--                confirm password-->
 
@@ -141,9 +167,10 @@
                     <EditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_below="@+id/editTextPassword"
+                        android:id="@+id/comfirmPassword"
+                        android:layout_below="@+id/comfirmPassword"
                         android:layout_gravity="center"
-                        android:hint="Confirm Password..."
+                        android:hint="Confirm Password"
                         android:inputType="textPassword"
                         android:padding="16dp"
                         android:textColor="@color/white"
@@ -167,11 +194,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/checkbox"
-                    android:layout_marginTop="100dp"
-                    android:background="@drawable/rounded_full_button"
-                    android:padding="16dp"
-                    android:text="Sign Up"
-                    android:textColor="@color/black" />
+                    android:layout_marginTop="50dp"
+                    android:background="@drawable/button_rounded"
+                    android:text="Login"
+                    android:textColor="@color/white"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/continuewith"

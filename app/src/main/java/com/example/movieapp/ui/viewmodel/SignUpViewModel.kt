@@ -15,13 +15,13 @@ class SignUpViewModel : ViewModel() {
     val signupData: MutableLiveData<ApiState<LoginResponse>>
         get() = _signupData
 
-    fun signup(email: String, password: String, username: String, role: String) {
+    fun signup(email: String, password: String, username: String) {
         _signupData.postValue(ApiState.loading())
 
         viewModelScope.launch {
             try {
                 val response: ApiResponse<LoginResponse> = ApiClient.get().apiService.signUp(
-                    SignUpRequest(email, password, username, role)
+                    SignUpRequest(email, password, username)
                 )
                 if (response.status == "200") {
                     _signupData.postValue(ApiState.success(response.data))

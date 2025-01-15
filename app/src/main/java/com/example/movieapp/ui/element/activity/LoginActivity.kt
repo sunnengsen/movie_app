@@ -3,9 +3,11 @@ package com.example.movieapp.ui.element.activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -26,10 +28,15 @@ class LoginActivity : AppCompatActivity() {
         val passwordEditText: EditText = findViewById(R.id.password)
         val loginButton: Button = findViewById(R.id.loginButton)
         val backButton: ImageView = findViewById(R.id.backButton)
+        val signUpNavi: TextView = findViewById(R.id.signUpNavi)
+
+        signUpNavi.setOnClickListener {
+            navigateToSignUp()
+        }
 
         // Navigate to ProfileActivity when the back button is clicked
         backButton.setOnClickListener {
-            navigateToProfile()
+            navigateToHome()
         }
 
         loginButton.setOnClickListener {
@@ -78,14 +85,21 @@ class LoginActivity : AppCompatActivity() {
         })
     }
 
-    private fun navigateToProfile() {
-        val intent = Intent(this, ProfileFragment::class.java)
+    private fun navigateToHome() {
+        val intent = Intent(this, MainActivity::class.java)
+        intent.putExtra("navigate_to_home", true)
+        startActivity(intent)
+        finish() // Optional: Finish LoginActivity if you don't want it in the back stack
+    }
+
+    private fun navigateToSignUp() {
+        val intent = Intent(this, SignUpActivity::class.java)
         startActivity(intent)
         finish() // Optional: Finish LoginActivity if you don't want it in the back stack
     }
 
     override fun onBackPressed() {
-        // Route to ProfileActivity when the back button is pressed
-        navigateToProfile()
+        // Route to HomeFragment when the back button is pressed
+        navigateToHome()
     }
 }

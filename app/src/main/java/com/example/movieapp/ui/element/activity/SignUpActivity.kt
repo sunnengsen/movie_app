@@ -4,6 +4,8 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -19,23 +21,39 @@ class SignUpActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
 
-        val usernameEditText: EditText = findViewById(R.id.userName)
+        val usernameEditText: EditText = findViewById(R.id.username)
         val emailEditText: EditText = findViewById(R.id.email)
         val passwordEditText: EditText = findViewById(R.id.password)
-        val roleEditText: EditText = findViewById(R.id.role)
-        val signUpButton: Button = findViewById(R.id.buttonRegister)
+        val comfirmEditText: EditText = findViewById(R.id.comfirm_password)
+        val signUpButton: Button = findViewById(R.id.buttonSignUp)
+        val back: ImageView = findViewById(R.id.back)
+        val Login: TextView = findViewById(R.id.login)
+
+        back.setOnClickListener {
+            navigateToLogin()
+        }
+
+        Login.setOnClickListener {
+            navigateToLogin()
+        }
 
         signUpButton.setOnClickListener {
             val username = usernameEditText.text.toString().trim()
             val email = emailEditText.text.toString().trim()
             val password = passwordEditText.text.toString().trim()
-            val role = roleEditText.text.toString().trim()
+            val confirm_password = comfirmEditText.text.toString().trim()
 
-            if (username.isEmpty() || email.isEmpty() || password.isEmpty() || role.isEmpty()) {
+            if (username.isEmpty() || email.isEmpty() || password.isEmpty() || confirm_password.isEmpty()) {
                 Toast.makeText(this, "Please fill all the fields", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
-            signUpViewModel.signup(email, password, username, role)
+
+            if (password != confirm_password) {
+                Toast.makeText(this, "Password and Confirm Password must be same", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            signUpViewModel.signup(email, password, username)
         }
         observeSignUpData()
     }
@@ -72,5 +90,18 @@ class SignUpActivity : AppCompatActivity() {
                 }
             }
         })
+    }
+
+    private fun navigateToHome() {
+        val intent = Intent(this, MainActivity::class.java)
+        intent.putExtra("navigate_to_home", true)
+        startActivity(intent)
+        finish() // Optional: Finish LoginActivity if you don't want it in the back stack
+    }
+
+    private fun navigateToLogin() {
+        val intent = Intent(this, LoginActivity::class.java)
+        startActivity(intent)
+        finish()
     }
 }

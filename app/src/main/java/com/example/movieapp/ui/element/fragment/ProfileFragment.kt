@@ -2,6 +2,7 @@ package com.example.movieapp.ui.element.fragment
 
 import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -24,6 +25,7 @@ import com.squareup.picasso.Picasso
 class ProfileFragment : Fragment() {
     private lateinit var binding: FragmentProfileBinding
     private lateinit var viewModel: ProfileViewModel
+    private lateinit var sharedPreferences: SharedPreferences
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,12 +33,24 @@ class ProfileFragment : Fragment() {
     ): View? {
         binding = FragmentProfileBinding.inflate(inflater, container, false)
         viewModel = ViewModelProvider(this).get(ProfileViewModel::class.java)
+
+        sharedPreferences = requireContext().getSharedPreferences("MovieAppPrefs", Context.MODE_PRIVATE)
+        val authToken = sharedPreferences.getString("auth_token", null)
+
+        if (authToken == null) {
+            // User is not logged in, navigate to LoginActivity
+            startActivity(Intent(requireContext(), LoginActivity::class.java))
+            requireActivity().finish()
+            return null
+        }
+
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // User is logged in, load profile data
         viewModel.loadProfile(requireContext())
 
         viewModel.profileData.observe(viewLifecycleOwner) { state ->
@@ -48,7 +62,6 @@ class ProfileFragment : Fragment() {
                     val profileData = state.data
                     if (profileData != null) {
                         binding.profileName.text = profileData.username
-                        binding.profileRole.text = profileData.role
                         binding.profileEmail.text = profileData.email
                         Picasso.get().load(profileData.profileUrl).into(binding.profileImage)
 
@@ -62,28 +75,7 @@ class ProfileFragment : Fragment() {
             }
         }
 
-        binding.loginButton.setOnClickListener {
-            val sharedPreferences = requireContext().getSharedPreferences("MovieAppPrefs", Context.MODE_PRIVATE)
-            with(sharedPreferences.edit()) {
-                remove("auth_token")
-                apply()
-            }
-            startActivity(Intent(requireContext(), LoginActivity::class.java))
-            requireActivity().finish()
-        }
-
-        binding.buttonSignUp.setOnClickListener {
-            val sharedPreferences = requireContext().getSharedPreferences("MovieAppPrefs", Context.MODE_PRIVATE)
-            with(sharedPreferences.edit()) {
-                remove("auth_token")
-                apply()
-            }
-            startActivity(Intent(requireContext(), SignUpActivity::class.java))
-            requireActivity().finish()
-        }
-
         binding.logoutButton.setOnClickListener {
-            val sharedPreferences = requireContext().getSharedPreferences("MovieAppPrefs", Context.MODE_PRIVATE)
             with(sharedPreferences.edit()) {
                 remove("auth_token")
                 apply()
@@ -91,8 +83,7 @@ class ProfileFragment : Fragment() {
             startActivity(Intent(requireContext(), MainActivity::class.java))
             requireActivity().finish()
         }
-        binding.detail.setOnClickListener {
-            val sharedPreferences = requireContext().getSharedPreferences("MovieAppPrefs", Context.MODE_PRIVATE)
+        binding.edit.setOnClickListener {
             with(sharedPreferences.edit()) {
                 remove("auth_token")
                 apply()
@@ -100,7 +91,5 @@ class ProfileFragment : Fragment() {
             startActivity(Intent(requireContext(), MovieDetail::class.java))
             requireActivity().finish()
         }
-
-
     }
 }

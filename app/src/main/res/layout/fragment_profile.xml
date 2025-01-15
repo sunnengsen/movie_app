@@ -3,13 +3,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
     tools:context=".ui.element.fragment.ProfileFragment">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/background" />
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:background="#BE000000"
         android:scrollbars="none">
+
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -17,29 +25,52 @@
             android:orientation="vertical">
 
             <!-- Header -->
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
+                android:layout_height="wrap_content">
 
+                <!-- Back Button (ImageView) -->
+                <ImageView
+                    android:id="@+id/back"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/ic_action_back_button"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true" />
 
+                <!-- Centered TextView -->
                 <TextView
-                    android:layout_width="0dp"
+                    android:id="@+id/titleText"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
                     android:text="Profile"
                     android:textColor="@color/white"
                     android:textSize="20sp"
-                    android:textStyle="bold" />
-            </LinearLayout>
+                    android:textStyle="bold"
+                    android:layout_centerInParent="true" />
+
+                <!-- Logout Button -->
+                <Button
+                    android:id="@+id/logoutButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/button_rounded"
+                    android:backgroundTint="@color/teal_700"
+                    android:text="Logout"
+                    android:textColor="@color/white"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true" />
+
+            </RelativeLayout>
+
+
 
             <!-- Profile Section -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
+                android:layout_marginBottom="30dp"
                 android:gravity="center"
                 android:orientation="vertical">
 
@@ -55,12 +86,12 @@
                 <!--                    android:src="@drawable/background" />-->
                 <com.google.android.material.imageview.ShapeableImageView
                     android:id="@+id/profileImage"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
                     android:layout_gravity="center"
                     android:scaleType="centerCrop"
                     android:src="@drawable/background"
-                    app:shapeAppearanceOverlay="@style/RoundedImageStyle"
+                    app:shapeAppearanceOverlay="@style/RoundedProfile"
                     tools:ignore="MissingConstraints" />
 
                 <!-- Profile Name -->
@@ -70,135 +101,33 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:text="Kim Jennie"
+                    android:textStyle="bold"
                     android:textColor="@color/white"
-                    android:textSize="20sp" />
+                    android:textSize="26sp" />
 
                 <!-- Information -->
-                <TextView
-                    android:id="@+id/profileRole"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Artist"
-                    android:textColor="@color/teal_700"
-                    android:textSize="16sp" />
-            </LinearLayout>
-
-            <!-- Details Section -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="40dp"
-                android:orientation="vertical">
-
-                <!-- Email -->
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Email"
-                    android:textColor="@color/white"
-                    android:textStyle="bold" />
-
                 <TextView
                     android:id="@+id/profileEmail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
+                    android:textSize="18sp"
                     android:text="kim.jennie@gmail.com"
-                    android:textColor="@color/teal_700" />
-
-                <!-- Phone Number -->
-                <TextView
+                    android:textColor="@color/teal_200" />
+                <Button
+                    android:id="@+id/edit"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Phone Number"
+                    android:text="Edit Profile"
                     android:textColor="@color/white"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:text="+6281234567890"
-                    android:textColor="@color/teal_700" />
-
-                <!-- Website -->
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Website"
-                    android:textColor="@color/white"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:autoLink="web"
-                    android:text="www.blackpink.com"
-                    android:textColor="@color/teal_700" />
-            </LinearLayout>
-
-            <!-- Security Info Section -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
-
-                <!-- Password Label -->
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Password"
-                    android:textColor="@color/white"
-                    android:textStyle="bold" />
-
-                <!-- Password (Masked) -->
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:layout_weight="1"
-                    android:text="********"
-                    android:textColor="@color/teal_700" />
-
-                <!-- Toggle Visibility Icon -->
+                    android:paddingHorizontal="10dp"
+                    android:background="@drawable/button_rounded"
+                    android:backgroundTint="@color/teal_700"
+                    />
 
             </LinearLayout>
 
-            <!-- Logout Button -->
-            <Button
-                android:id="@+id/logoutButton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:backgroundTint="@color/teal_700"
-                android:text="Logout"
-                android:textColor="@color/white" />
 
-            <Button
-                android:id="@+id/loginButton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/teal_700"
-                android:text="Login"
-                android:textColor="@color/white" />
-
-            <Button
-                android:id="@+id/buttonSignUp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/teal_700"
-                android:text="SignUp"
-                android:textColor="@color/white" />
-            <Button
-                android:id="@+id/detail"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Edit Profile"
-                android:textColor="@color/white"
-                android:textSize="16sp"
-                android:textStyle="bold" />
 
             <TextView
                 android:layout_width="wrap_content"
