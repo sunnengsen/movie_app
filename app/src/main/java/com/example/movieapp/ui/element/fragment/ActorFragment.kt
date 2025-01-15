@@ -4,9 +4,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.movieapp.R
 import com.example.movieapp.data.model.Actor
@@ -40,44 +40,60 @@ class ActorFragment: BaseFragment() {
         binding.recyclerViewDirector.layoutManager = GridLayoutManager(context, 1)
 
         viewModel.actor.observe(viewLifecycleOwner) { state ->
-            handleState(state, binding.recyclerViewActor)
+            handleState(state, binding.recyclerViewActor, binding.tvActor)
         }
         viewModel.director.observe(viewLifecycleOwner) { state ->
-            handleStates(state, binding.recyclerViewDirector)
+            handleStates(state, binding.recyclerViewDirector, binding.tvDirector)
         }
 
         viewModel.loadActor()
         viewModel.loadDirector()
     }
 
-    private fun handleState(state: ApiState<List<Actor>>, recyclerView: RecyclerView) {
+    private fun handleState(state: ApiState<List<Actor>>, recyclerView: RecyclerView, textView: TextView) {
         when (state.status) {
             Status.LOADING -> {
                 showLoading()
+                textView.visibility = View.GONE
             }
             Status.SUCCESS -> {
                 hideLoading()
-                showActorData(state.data!!, recyclerView)
+                if (!state.data.isNullOrEmpty()) {
+                    showActorData(state.data, recyclerView)
+                    textView.visibility = if (state.data.isEmpty()) View.GONE else View.VISIBLE
+                } else {
+                    // Optionally, handle empty data
+                    showAlert()  // Show an alert if the data is empty
+                }
             }
             Status.ERROR -> {
                 hideLoading()
                 showAlert()
+                textView.visibility = View.GONE
             }
         }
     }
 
-    private fun handleStates(state: ApiState<List<Director>>, recyclerView: RecyclerView) {
+    private fun handleStates(state: ApiState<List<Director>>, recyclerView: RecyclerView, textView: TextView) {
         when (state.status) {
             Status.LOADING -> {
                 showLoading()
+                textView.visibility = View.GONE
             }
             Status.SUCCESS -> {
                 hideLoading()
-                showDirectorData(state.data!!, recyclerView)
+                if (!state.data.isNullOrEmpty()) {
+                    showDirectorData(state.data, recyclerView)
+                    textView.visibility = if (state.data.isEmpty()) View.GONE else View.VISIBLE
+                } else {
+                    // Optionally, handle empty data
+                    showAlert()  // Show an alert if the data is empty
+                }
             }
             Status.ERROR -> {
                 hideLoading()
                 showAlert()
+                textView.visibility = View.GONE
             }
         }
     }

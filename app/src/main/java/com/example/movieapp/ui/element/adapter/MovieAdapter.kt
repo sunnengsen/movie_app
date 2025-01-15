@@ -32,7 +32,6 @@ class MovieAdapter(private var movies: List<Movie>) :
             context.startActivity(intent)
         }
     }
-
     override fun getItemCount(): Int {
         return movies.size
     }

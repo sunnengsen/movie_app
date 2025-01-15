@@ -1,32 +1,51 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Loading">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#C4000000"
+    android:gravity="center">
 
-    <ImageView
-        android:id="@+id/flicker"
-        android:layout_gravity="center"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:src="@drawable/rounded_full" />
-
-    <View
-        android:id="@+id/loader"
-        android:layout_gravity="center"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:background="@drawable/ic_action_spin" />
-
-    <TextView
-        android:id="@+id/loadingText"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal|bottom"
-        android:text="Loading Movies..."
-        android:textSize="18sp"
-        android:textColor="#7C34FB"
+        android:layout_height="match_parent"
         android:gravity="center"
-        android:padding="16dp" />
+        >
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:indeterminate="true"
+            android:indeterminateTint="@color/teal_200"
+            android:indeterminateTintMode="src_in"
+            tools:ignore="MissingConstraints"
+            android:theme="@style/Widget.AppCompat.ProgressBar"
+            android:outlineSpotShadowColor="@color/black"
+            tools:layout_editor_absoluteX="169dp"
+            tools:layout_editor_absoluteY="327dp" />
 
-</FrameLayout>
+
+        <TextView
+            android:id="@+id/loadingText"
+            android:layout_below="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="center"
+            android:text="Loading..."
+            android:textColor="#2A8CB3"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.507"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/progressBar" />
+
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:id="@+id/loader"
+            />
+    </RelativeLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

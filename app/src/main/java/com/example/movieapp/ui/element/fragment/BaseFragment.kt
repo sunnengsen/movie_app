@@ -1,38 +1,29 @@
 package com.example.movieapp.ui.element.fragment
 
-import android.app.ProgressDialog
+import android.view.View
 import androidx.fragment.app.Fragment
-import kotlinx.coroutines.Delay
-import kotlinx.coroutines.delay
+import com.example.movieapp.ui.element.activity.MainActivity
 
-open class BaseFragment: Fragment() {
-    private var progressDilog: ProgressDialog? = null
-
+open class BaseFragment : Fragment() {
 
     fun showLoading() {
-        if (progressDilog == null) {
-            progressDilog = ProgressDialog(requireContext()).apply {
-                setMessage("Loading...")
-                setCancelable(false)
-                setCanceledOnTouchOutside(false)
-                setProgressStyle(ProgressDialog.STYLE_SPINNER)
-                setIndeterminate(true)
-                setIndeterminateDrawable(requireContext().getDrawable(android.R.drawable.progress_indeterminate_horizontal))
-            }
-        }
-        if (!progressDilog!!.isShowing) {
-            progressDilog!!.show()
-        }
+        (activity as? MainActivity)?.showLoading()
     }
 
     fun hideLoading() {
-        progressDilog?.takeIf { it.isShowing }?.dismiss()
+        (activity as? MainActivity)?.hideLoading()
     }
 
-
-    fun showAlert(){
-
+    // Call this method after the backend operation completes (success or failure)
+    fun onBackendComplete(success: Boolean) {
+        if (success) {
+            hideLoading()  // Hide loading if backend operation is successful
+        } else {
+            showAlert()  // Show alert if backend operation failed
+        }
     }
 
-
+    fun showAlert() {
+        // Implement alert logic here
+    }
 }

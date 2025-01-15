@@ -16,6 +16,7 @@
            android:paddingHorizontal="10dp">
 
            <TextView
+               android:id="@+id/tvActor"
                android:layout_width="match_parent"
                android:layout_height="wrap_content"
                android:text="Actor"
@@ -32,6 +33,7 @@
            <TextView
                android:layout_width="match_parent"
                android:layout_height="wrap_content"
+               android:id="@+id/tvDirector"
                android:text="Director"
                android:textColor="@color/white"
                android:textSize="20sp"
