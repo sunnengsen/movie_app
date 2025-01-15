@@ -50,7 +50,11 @@ class SearchFragment : BaseFragment() {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                filterMovies(s.toString())
+                if (s.isNullOrEmpty()) {
+                    viewModel.loadAllMovie()
+                } else {
+                    viewModel.searchMovie(s.toString())
+                }
             }
 
             override fun afterTextChanged(s: Editable?) {}
@@ -79,12 +83,5 @@ class SearchFragment : BaseFragment() {
 
     private fun showMovieData(data: List<Movie>) {
         adapter.updateData(data)
-    }
-
-    private fun filterMovies(query: String) {
-        val filteredMovies = allMovies.filter { movie ->
-            movie.title.contains(query, ignoreCase = true)
-        }
-        showMovieData(filteredMovies)
     }
 }

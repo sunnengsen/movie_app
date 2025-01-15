@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -15,7 +16,7 @@ import com.example.movieapp.databinding.FragmentCategoryBinding
 import com.example.movieapp.ui.element.adapter.MovieAdapter
 import com.example.movieapp.ui.viewmodel.AllMovieViewModel
 
-class MovieFragment : Fragment() {
+class MovieFragment : BaseFragment() {
     private lateinit var binding: FragmentCategoryBinding
     private lateinit var viewModel: AllMovieViewModel
 
@@ -41,45 +42,41 @@ class MovieFragment : Fragment() {
         binding.recyclerViewMusical.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         binding.recyclerViewRomance.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         binding.recyclerViewAdventure.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-        binding.recyclerViewAll.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+
         viewModel.dramaMovies.observe(viewLifecycleOwner) { state ->
-            handleState(state, binding.recyclerViewDrama)
+            handleState(state, binding.recyclerViewDrama, binding.tvShow)
         }
 
         viewModel.actionMovies.observe(viewLifecycleOwner) { state ->
-            handleState(state, binding.recyclerViewAction)
+            handleState(state, binding.recyclerViewAction, binding.action)
         }
 
         viewModel.comedyMovies.observe(viewLifecycleOwner) { state ->
-            handleState(state, binding.recyclerViewComedy)
+            handleState(state, binding.recyclerViewComedy, binding.comedy)
         }
 
         viewModel.thrillerMovies.observe(viewLifecycleOwner) { state ->
-            handleState(state, binding.recyclerViewThriller)
+            handleState(state, binding.recyclerViewThriller, binding.thriller)
         }
 
         viewModel.fantasyMovies.observe(viewLifecycleOwner) { state ->
-            handleState(state, binding.recyclerViewFantasy)
+            handleState(state, binding.recyclerViewFantasy, binding.fantasy)
         }
 
         viewModel.horrorMovies.observe(viewLifecycleOwner) { state ->
-            handleState(state, binding.recyclerViewHorror)
+            handleState(state, binding.recyclerViewHorror, binding.horror)
         }
 
         viewModel.musicalMovies.observe(viewLifecycleOwner) { state ->
-            handleState(state, binding.recyclerViewMusical)
+            handleState(state, binding.recyclerViewMusical, binding.musical)
         }
 
         viewModel.romanceMovies.observe(viewLifecycleOwner) { state ->
-            handleState(state, binding.recyclerViewRomance)
+            handleState(state, binding.recyclerViewRomance, binding.romance)
         }
 
         viewModel.adventureMovies.observe(viewLifecycleOwner) { state ->
-            handleState(state, binding.recyclerViewAdventure)
-        }
-
-        viewModel.allMovies.observe(viewLifecycleOwner) { state ->
-            handleState(state, binding.recyclerViewAll)
+            handleState(state, binding.recyclerViewAdventure, binding.adventure)
         }
 
         viewModel.loadDrama()
@@ -91,22 +88,23 @@ class MovieFragment : Fragment() {
         viewModel.loadMusical()
         viewModel.loadRomance()
         viewModel.loadAdventure()
-        viewModel.loadAllMovie()
-
     }
 
-    private fun handleState(state: ApiState<List<Movie>>, recyclerView: RecyclerView) {
+    private fun handleState(state: ApiState<List<Movie>>, recyclerView: RecyclerView, textView: TextView) {
         when (state.status) {
             Status.LOADING -> {
-                showLoading()
+                showLoading()  // Show the loading spinner when the status is LOADING
+                textView.visibility = View.GONE  // Hide any error or info text
             }
             Status.SUCCESS -> {
-                hideLoading()
-                showMovieData(state.data!!, recyclerView)
+                hideLoading()  // Hide loading only when the data is successfully loaded
+                showMovieData(state.data!!, recyclerView)  // Show the data in the RecyclerView
+                textView.visibility = if (state.data.isEmpty()) View.GONE else View.VISIBLE  // Show text if data is available
             }
             Status.ERROR -> {
-                hideLoading()
-                showAlert()
+                // Do not hide the loading spinner when the status is ERROR
+                showAlert()  // Show an error alert
+                textView.visibility = View.GONE  // Hide any error or info text
             }
         }
     }
@@ -116,15 +114,4 @@ class MovieFragment : Fragment() {
         recyclerView.adapter = adapter
     }
 
-    private fun showLoading() {
-        // Implement loading UI
-    }
-
-    private fun hideLoading() {
-        // Hide loading UI
-    }
-
-    private fun showAlert() {
-        // Show error alert
-    }
 }

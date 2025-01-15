@@ -12,10 +12,6 @@ import com.example.movieapp.ui.element.fragment.MovieFragment
 import com.example.movieapp.ui.element.fragment.HomeFragment
 import com.example.movieapp.ui.element.fragment.ProfileFragment
 import com.example.movieapp.ui.element.fragment.SearchFragment
-import com.example.movieapp.ui.viewmodel.ActorDirectorViewModel
-import com.example.movieapp.ui.viewmodel.AllMovieViewModel
-import com.example.movieapp.ui.viewmodel.HomeViewModel
-import com.example.movieapp.ui.viewmodel.MovieViewModel
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -64,9 +60,6 @@ class MainActivity : AppCompatActivity() {
                     else -> false
                 }
             }
-
-        HomeViewModel().loadHomeData()
-        AllMovieViewModel().loadAllMovie()
     }
 
     private fun replaceFragment(fragment: Fragment) {
@@ -74,5 +67,13 @@ class MainActivity : AppCompatActivity() {
         val fragmentTransaction = fragmentManager.beginTransaction()
         fragmentTransaction.replace(R.id.frame_layout, fragment)
         fragmentTransaction.commit()
+    }
+
+    fun showLoading() {
+        binding.progressBar.visibility = View.VISIBLE
+    }
+
+    fun hideLoading() {
+        binding.progressBar.visibility = View.GONE
     }
 }

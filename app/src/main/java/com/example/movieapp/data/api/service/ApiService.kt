@@ -72,4 +72,7 @@ interface ApiService {
     @GET("movie/{id}")
     suspend fun getMovieDetails(@Path("id") movieId: Int): ApiResponse<Movie>
 
+    @GET("movie/search/{title}")
+    suspend fun searchMovie(@Path("title") title: String): ApiResponse<List<Movie>>
+
 }

@@ -293,6 +293,22 @@ class AllMovieViewModel : ViewModel() {
             }
         }
     }
+    fun searchMovie(title: String) {
+        _allMovies.value = ApiState.loading()
+        viewModelScope.launch {
+            try {
+                val apiService = ApiClient.get().apiService
+                val response = apiService.searchMovie(title)
+                if (response.status == "200") {
+                    _allMovies.value = ApiState.success(response.data)
+                } else {
+                    _allMovies.value = ApiState.error(response.message ?: "Unknown error")
+                }
+            } catch (e: Exception) {
+                _allMovies.value = ApiState.error(e.message ?: "Unknown error")
+            }
+        }
+    }
 
 
 }
