@@ -8,11 +8,10 @@ import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.movieapp.R
-import com.example.movieapp.data.model.Actor
 import com.example.movieapp.data.model.Director
 import com.squareup.picasso.Picasso
 
-class DirectorAdapter(private val actors: List<Director>) : RecyclerView.Adapter<DirectorAdapter.DirectorViewHolder>() {
+class DirectorAdapter(private var directors: List<Director>) : RecyclerView.Adapter<DirectorAdapter.DirectorViewHolder>() {
 
     private val expandedPositions = mutableSetOf<Int>()
 
@@ -22,7 +21,7 @@ class DirectorAdapter(private val actors: List<Director>) : RecyclerView.Adapter
     }
 
     override fun onBindViewHolder(holder: DirectorViewHolder, position: Int) {
-        val director = actors[position]
+        val director = directors[position]
         with(holder) {
             actorName.text = director.name
             Picasso.get().load(director.profileUrl).into(actorImage)
@@ -49,7 +48,12 @@ class DirectorAdapter(private val actors: List<Director>) : RecyclerView.Adapter
         }
     }
 
-    override fun getItemCount(): Int = actors.size
+    override fun getItemCount(): Int = directors.size
+
+    fun updateData(newDirectors: List<Director>) {
+        directors = newDirectors
+        notifyDataSetChanged()
+    }
 
     class DirectorViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val actorImage: ImageView = itemView.findViewById(R.id.actorImage)

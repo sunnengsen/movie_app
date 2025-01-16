@@ -66,14 +66,17 @@ class SearchFragment : BaseFragment() {
             Status.SUCCESS -> {
                 showMovieData(state.data ?: emptyList())
                 hideLoading()
+                binding.noResultsTextView.visibility = if (state.data.isNullOrEmpty()) View.VISIBLE else View.GONE
             }
             Status.ERROR -> {
                 Log.e("SearchFragment", state.message ?: "Unknown error")
                 showAlert()
+                binding.noResultsTextView.visibility = View.GONE
             }
             Status.LOADING -> {
                 showLoading()
                 Log.d("SearchFragment", "Loading")
+                binding.noResultsTextView.visibility = View.GONE
             }
         }
     }

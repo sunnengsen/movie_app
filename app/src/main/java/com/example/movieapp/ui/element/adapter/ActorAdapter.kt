@@ -11,7 +11,7 @@ import com.example.movieapp.R
 import com.example.movieapp.data.model.Actor
 import com.squareup.picasso.Picasso
 
-class ActorAdapter(private val actors: List<Actor>) : RecyclerView.Adapter<ActorAdapter.ActorViewHolder>() {
+class ActorAdapter(private var actors: List<Actor>) : RecyclerView.Adapter<ActorAdapter.ActorViewHolder>() {
 
     private val expandedPositions = mutableSetOf<Int>()
 
@@ -49,6 +49,11 @@ class ActorAdapter(private val actors: List<Actor>) : RecyclerView.Adapter<Actor
     }
 
     override fun getItemCount(): Int = actors.size
+
+    fun updateData(newActors: List<Actor>) {
+        actors = newActors
+        notifyDataSetChanged()
+    }
 
     class ActorViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val actorImage: ImageView = itemView.findViewById(R.id.actorImage)

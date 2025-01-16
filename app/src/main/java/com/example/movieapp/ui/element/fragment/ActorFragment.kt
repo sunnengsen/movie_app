@@ -1,7 +1,8 @@
 package com.example.movieapp.ui.element.fragment
 
 import android.os.Bundle
-import android.util.Log
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -22,7 +23,10 @@ import com.example.movieapp.ui.viewmodel.ActorDirectorViewModel
 class ActorFragment: BaseFragment() {
     private lateinit var binding: FragmentActorBinding
     private lateinit var viewModel: ActorDirectorViewModel
-
+    private lateinit var actorAdapter: ActorAdapter
+    private lateinit var directorAdapter: DirectorAdapter
+    private var allActors: List<Actor> = listOf()
+    private var allDirectors: List<Director> = listOf()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -41,6 +45,11 @@ class ActorFragment: BaseFragment() {
         binding.recyclerViewActor.layoutManager = GridLayoutManager(context, 1)
         binding.recyclerViewDirector.layoutManager = GridLayoutManager(context, 1)
 
+        actorAdapter = ActorAdapter(allActors)
+        directorAdapter = DirectorAdapter(allDirectors)
+        binding.recyclerViewActor.adapter = actorAdapter
+        binding.recyclerViewDirector.adapter = directorAdapter
+
         viewModel.actor.observe(viewLifecycleOwner) { state ->
             handleState(state, binding.recyclerViewActor, binding.tvActor)
         }
@@ -50,25 +59,35 @@ class ActorFragment: BaseFragment() {
 
         viewModel.loadActor()
         viewModel.loadDirector()
+
+        binding.searchInput.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                filterActorsAndDirectors(s.toString())
+            }
+
+            override fun afterTextChanged(s: Editable?) {}
+        })
     }
 
     private fun handleState(state: ApiState<List<Actor>>, recyclerView: RecyclerView, textView: TextView) {
         when (state.status) {
             Status.SUCCESS -> {
-                state.data?.let { showActorData(it, recyclerView) }
+                state.data?.let {
+                    allActors = it
+                    actorAdapter.updateData(it)
+                }
                 hideLoading()
                 textView.visibility = if (state.data != null) View.VISIBLE else View.GONE
             }
             Status.ERROR -> {
-                Log.e("SearchFragment", state.message ?: "Unknown error")
                 showAlert()
                 textView.visibility = View.GONE
             }
             Status.LOADING -> {
                 showLoading()
-                Log.d("SearchFragment", "Loading")
                 textView.visibility = View.GONE
-
             }
         }
     }
@@ -76,32 +95,30 @@ class ActorFragment: BaseFragment() {
     private fun handleStates(state: ApiState<List<Director>>, recyclerView: RecyclerView, textView: TextView) {
         when (state.status) {
             Status.SUCCESS -> {
-                state.data?.let { showDirectorData(it, recyclerView) }
+                state.data?.let {
+                    allDirectors = it
+                    directorAdapter.updateData(it)
+                }
                 hideLoading()
-//                show only data not null
                 textView.visibility = if (state.data != null) View.VISIBLE else View.GONE
             }
             Status.ERROR -> {
-                Log.e("SearchFragment", state.message ?: "Unknown error")
                 showAlert()
                 textView.visibility = View.GONE
             }
             Status.LOADING -> {
                 showLoading()
-                Log.d("SearchFragment", "Loading")
                 textView.visibility = View.GONE
-
             }
         }
     }
 
-    private fun showActorData(actors: List<Actor>, recyclerView: RecyclerView) {
-        val adapter = ActorAdapter(actors)
-        recyclerView.adapter = adapter
-    }
-
-    private fun showDirectorData(directors: List<Director>, recyclerView: RecyclerView) {
-        val adapter = DirectorAdapter(directors)
-        recyclerView.adapter = adapter
+    private fun filterActorsAndDirectors(query: String?) {
+        val filteredActors = allActors.filter { it.name.contains(query ?: "", ignoreCase = true) }
+        val filteredDirectors = allDirectors.filter { it.name.contains(query ?: "", ignoreCase = true) }
+        actorAdapter.updateData(filteredActors)
+        directorAdapter.updateData(filteredDirectors)
+        binding.tvActorNotFound.visibility = if (filteredActors.isEmpty()) View.VISIBLE else View.GONE
+        binding.tvDirectorNotFound.visibility = if (filteredDirectors.isEmpty()) View.VISIBLE else View.GONE
     }
 }
