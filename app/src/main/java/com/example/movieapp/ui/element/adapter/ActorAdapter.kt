@@ -31,23 +31,24 @@ class ActorAdapter(private val actors: List<Actor>) : RecyclerView.Adapter<Actor
             val isExpanded = expandedPositions.contains(position)
             recyclerViewMovies.visibility = if (isExpanded) View.VISIBLE else View.GONE
 
+            if (isExpanded) {
+                val movieAdapter = MovieAdapter(actor.movies.map { it.movie })
+                recyclerViewMovies.layoutManager = LinearLayoutManager(itemView.context, LinearLayoutManager.HORIZONTAL, false)
+                recyclerViewMovies.adapter = movieAdapter
+            }
+
             itemView.setOnClickListener {
                 if (isExpanded) {
                     expandedPositions.remove(position)
                 } else {
                     expandedPositions.add(position)
-                    val movieAdapter = MovieAdapter(actor.movies.map { it.movie })
-                    recyclerViewMovies.layoutManager = LinearLayoutManager(itemView.context, LinearLayoutManager.HORIZONTAL, false)
-                    recyclerViewMovies.adapter = movieAdapter
                 }
-                notifyDataSetChanged()
+                notifyItemChanged(position)
             }
         }
     }
 
-    override fun getItemCount(): Int {
-        return actors.size
-    }
+    override fun getItemCount(): Int = actors.size
 
     class ActorViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val actorImage: ImageView = itemView.findViewById(R.id.actorImage)

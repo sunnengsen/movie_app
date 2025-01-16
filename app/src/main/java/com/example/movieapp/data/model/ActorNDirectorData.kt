@@ -10,7 +10,8 @@ data class Director(
     val name: String,
     val birthDate: String,
     val profileUrl: String,
-    val biography: String
+    val biography: String,
+    val movies: List<MovieWrapper>
 )
 
 data class Actor(

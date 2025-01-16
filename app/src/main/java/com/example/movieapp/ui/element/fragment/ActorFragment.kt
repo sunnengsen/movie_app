@@ -1,6 +1,7 @@
 package com.example.movieapp.ui.element.fragment
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -21,6 +22,7 @@ import com.example.movieapp.ui.viewmodel.ActorDirectorViewModel
 class ActorFragment: BaseFragment() {
     private lateinit var binding: FragmentActorBinding
     private lateinit var viewModel: ActorDirectorViewModel
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -52,48 +54,43 @@ class ActorFragment: BaseFragment() {
 
     private fun handleState(state: ApiState<List<Actor>>, recyclerView: RecyclerView, textView: TextView) {
         when (state.status) {
-            Status.LOADING -> {
-                showLoading()
-                textView.visibility = View.GONE
-            }
             Status.SUCCESS -> {
+                state.data?.let { showActorData(it, recyclerView) }
                 hideLoading()
-                if (!state.data.isNullOrEmpty()) {
-                    showActorData(state.data, recyclerView)
-                    textView.visibility = if (state.data.isEmpty()) View.GONE else View.VISIBLE
-                } else {
-                    // Optionally, handle empty data
-                    showAlert()  // Show an alert if the data is empty
-                }
+                textView.visibility = if (state.data != null) View.VISIBLE else View.GONE
             }
             Status.ERROR -> {
-                hideLoading()
+                Log.e("SearchFragment", state.message ?: "Unknown error")
                 showAlert()
                 textView.visibility = View.GONE
+            }
+            Status.LOADING -> {
+                showLoading()
+                Log.d("SearchFragment", "Loading")
+                textView.visibility = View.GONE
+
             }
         }
     }
 
     private fun handleStates(state: ApiState<List<Director>>, recyclerView: RecyclerView, textView: TextView) {
         when (state.status) {
-            Status.LOADING -> {
-                showLoading()
-                textView.visibility = View.GONE
-            }
             Status.SUCCESS -> {
+                state.data?.let { showDirectorData(it, recyclerView) }
                 hideLoading()
-                if (!state.data.isNullOrEmpty()) {
-                    showDirectorData(state.data, recyclerView)
-                    textView.visibility = if (state.data.isEmpty()) View.GONE else View.VISIBLE
-                } else {
-                    // Optionally, handle empty data
-                    showAlert()  // Show an alert if the data is empty
-                }
+//                show only data not null
+                textView.visibility = if (state.data != null) View.VISIBLE else View.GONE
             }
             Status.ERROR -> {
-                hideLoading()
+                Log.e("SearchFragment", state.message ?: "Unknown error")
                 showAlert()
                 textView.visibility = View.GONE
+            }
+            Status.LOADING -> {
+                showLoading()
+                Log.d("SearchFragment", "Loading")
+                textView.visibility = View.GONE
+
             }
         }
     }
