@@ -26,7 +26,8 @@ data class MovieModel(
     val movieUrl: String,
     val actorName: String?,
     val movieType: MovieType,
-    val reviews: List<Review>
+    val reviews: List<Review>,
+    val banner: String?
 )
 
 data class MovieType(

@@ -9,5 +9,6 @@ data class Movie(
     val posterUrl: String,
     val rating: String?,
     val movieTypeName: MovieType,
-    val movieUrl: String?
+    val movieUrl: String?,
+    val banner: String?
 )

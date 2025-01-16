@@ -3,6 +3,8 @@ package com.example.movieapp.data.api.service
 import com.example.movieapp.data.model.Actor
 import com.example.movieapp.data.model.ActorNDirectorData
 import com.example.movieapp.data.model.ApiResponse
+import com.example.movieapp.data.model.BookmarkRequest
+import com.example.movieapp.data.model.BookmarkResponse
 import com.example.movieapp.data.model.Director
 import com.example.movieapp.data.model.HomeData
 import com.example.movieapp.data.model.Movie
@@ -12,6 +14,7 @@ import com.example.movieapp.data.model.auth.LoginRequest
 import com.example.movieapp.data.model.auth.LoginResponse
 import com.example.movieapp.data.model.auth.SignUpRequest
 import retrofit2.http.Body
+import retrofit2.http.DELETE
 import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.POST
@@ -23,6 +26,12 @@ interface ApiService {
 
     @POST("auth/signup")
     suspend fun signUp(@Body response: SignUpRequest): ApiResponse<LoginResponse>
+
+    @POST("bookmark")
+    suspend fun bookmark(@Body response: BookmarkRequest): ApiResponse<BookmarkResponse>
+
+    @DELETE("bookmark/{id}")
+    suspend fun removeBookmark(@Path("id") id: Int): ApiResponse<BookmarkResponse>
 
     @GET("home")
     suspend fun loadHomeData(): ApiResponse<HomeData>

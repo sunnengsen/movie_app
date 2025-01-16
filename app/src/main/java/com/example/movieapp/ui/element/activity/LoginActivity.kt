@@ -63,11 +63,13 @@ class LoginActivity : AppCompatActivity() {
                 }
                 Status.SUCCESS -> {
                     val token = state.data?.token
+                    val userId = state.data?.userId
                     if (token != null) {
-                        // Store the token in SharedPreferences
+                        // Store the token and userId in SharedPreferences
                         val sharedPreferences = getSharedPreferences("MovieAppPrefs", Context.MODE_PRIVATE)
                         with(sharedPreferences.edit()) {
                             putString("auth_token", token)
+                            putInt("user_id", userId!!)
                             apply()
                         }
                         Toast.makeText(this, "Login Successful", Toast.LENGTH_SHORT).show()
@@ -75,7 +77,7 @@ class LoginActivity : AppCompatActivity() {
                         startActivity(Intent(this, MainActivity::class.java))
                         finish()
                     } else {
-                        Toast.makeText(this, "Login Failed: Token is null", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this, "Login Failed: Token or User ID is null", Toast.LENGTH_SHORT).show()
                     }
                 }
                 Status.ERROR -> {

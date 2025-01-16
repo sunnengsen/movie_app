@@ -3,9 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.element.activity.MovieDetail"
-    android:background="@color/black"
-    >
+    android:background="@color/black">
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -22,106 +22,261 @@
                 android:layout_height="300dp"
                 android:scaleType="centerCrop"
                 tools:srcCompat="@tools:sample/backgrounds/scenic" />
-            <ImageView
-                android:id="@+id/play"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:src="@drawable/ic_action_play"
-                android:layout_marginTop="100dp"
-                android:layout_centerHorizontal="true"
-                />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Title"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                android:gravity="end"
-                android:textColor="@color/white"
-                android:padding="5dp"
-                android:id="@+id/titleMovie"
-                android:layout_below="@+id/movieImage"
-                android:layout_marginTop="10dp"
-                />
 
-            <TextView
-                android:id="@+id/releaseDate"
-                android:layout_width="wrap_content"
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:background="@drawable/gradient_background"
+                >
+                <LinearLayout
+                    android:id="@+id/topBar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="10dp"
+                    >
+
+                    <ImageView
+                        android:id="@+id/back"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:background="@drawable/back_rounded"
+                        android:src="@drawable/ic_launcher_back_button2"
+                        android:layout_marginStart="10dp"
+                        />
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="1" />
+
+                    <ImageView
+                        android:layout_width="34dp"
+                        android:layout_height="34dp"
+                        android:background="@drawable/back_rounded"
+                        android:layout_marginEnd="10dp"
+                        android:id="@+id/bookmarkButton"
+                        android:src="@drawable/ic_action_bookmark" />
+
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_below="@+id/topBar"
+                    >
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginBottom="10dp"
+                        android:orientation="horizontal"
+                        >
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            >
+                            <com.google.android.material.imageview.ShapeableImageView
+                                android:id="@+id/moviePoster"
+                                android:layout_width="130dp"
+                                android:layout_height="190dp"
+                                android:scaleType="centerCrop"
+                                app:shapeAppearanceOverlay="@style/RoundedImageStyle"
+                                android:src="@drawable/background" />
+                            <RelativeLayout
+                                android:layout_width="130dp"
+                                android:layout_height="190dp"
+                                android:background="@drawable/gradient_movie"
+                                />
+
+                        </RelativeLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:padding="10dp"
+                            >
+
+                            <TextView
+                                android:layout_width="200dp"
+                                android:layout_height="50dp"
+                                android:text="Spider-Man : No Way Home"
+                                android:textSize="20sp"
+                                android:textStyle="bold"
+                                android:layout_marginBottom="10dp"
+                                android:textColor="@color/white"
+                                android:id="@+id/titleMovie"
+                                />
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:paddingHorizontal="2dp"
+                                android:paddingVertical="1dp"
+                                android:layout_marginBottom="10dp"
+                                android:gravity="center"
+                                tools:ignore="MissingConstraints">
+                                <TextView
+                                    android:id="@+id/textView2"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="IMDb"
+                                    android:paddingHorizontal="2dp"
+                                    android:textStyle="bold"
+                                    android:textColor="@color/black"
+                                    android:textSize="12dp"
+                                    android:background="@drawable/imdb_background"
+                                    tools:layout_editor_absoluteX="17dp"
+                                    tools:layout_editor_absoluteY="15dp"
+                                    android:layout_marginEnd="5dp"
+                                    tools:ignore="MissingConstraints" />
+                                <TextView
+                                    android:id="@+id/rating"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginHorizontal="2dp"
+                                    android:text="9.2"
+                                    android:textSize="18sp"
+                                    android:textStyle="bold"
+                                    android:textColor="@color/white"
+                                    tools:layout_editor_absoluteX="60dp"
+                                    tools:layout_editor_absoluteY="15dp"
+                                    tools:ignore="MissingConstraints" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/movieDetail"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="10dp"
+                                >
+
+                                <TextView
+                                    android:id="@+id/releaseDate"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="134min"
+                                    android:textSize="16sp"
+                                    android:layout_marginEnd="10dp"
+                                    android:textColor="#B3FFFFFF"
+                                    />
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="|"
+                                    android:textSize="16sp"
+                                    android:textStyle="bold"
+                                    android:textColor="#B3FFFFFF"
+                                    android:layout_marginEnd="10dp"
+                                    />
+
+                                <TextView
+                                    android:id="@+id/movieTypeName"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:text="Action/Adventure"
+                                    android:textColor="#B3FFFFFF"
+                                    android:textSize="16sp" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center_vertical"
+                                >
+
+                                <ImageView
+                                    android:id="@+id/play"
+                                    android:layout_width="40dp"
+                                    android:layout_height="40dp"
+                                    android:layout_marginEnd="10dp"
+                                    android:src="@drawable/ic_action_play"
+                                    android:layout_centerHorizontal="true"
+                                    />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Watch Now"
+                                    android:textSize="18sp"
+                                    android:textStyle="bold"
+                                    android:textColor="@color/white"
+                                    />
+                            </LinearLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+                </RelativeLayout>
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Episode 1, Winter is Coming"
-                android:textColor="@color/white"
-                android:textSize="16dp"
-                android:textStyle="italic"
-                android:layout_below="@+id/titleMovie"
-                android:padding="5dp"
-                />
-<!--            rating-->
-            <TextView
-                android:id="@+id/rating"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Rating"
-                android:textColor="@color/white"
-                android:textSize="16dp"
-                android:textStyle="italic"
-                android:layout_below="@+id/releaseDate"
-                android:padding="5dp"
-                />
-            <TextView
-                android:id="@+id/actorName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="actorName"
-                android:textColor="@color/white"
-                android:textSize="16dp"
-                android:textStyle="italic"
-                android:layout_below="@+id/rating"
-                android:padding="5dp"
-                />
-            <TextView
-                android:id="@+id/directorName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="actorName"
-                android:textColor="@color/white"
-                android:textSize="16dp"
-                android:textStyle="italic"
-                android:layout_below="@+id/actorName"
-                android:padding="5dp"
-                />
-            <TextView
-                android:id="@+id/movieTypeName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="movieTypeName"
-                android:textColor="@color/white"
-                android:textSize="16dp"
-                android:textStyle="italic"
-                android:layout_below="@+id/directorName"
-                android:padding="5dp"
-                />
-            <TextView
-                android:id="@+id/des"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="1h 34min / 1.2GB / 1080p"
-                android:textColor="@color/white"
-                android:textStyle="italic"
-                android:layout_below="@+id/movieTypeName"
-                android:padding="5dp"
-                />
-<!--            review-->
-            <TextView
-                android:id="@+id/review"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Review"
-                android:textColor="@color/white"
-                android:textSize="16dp"
-                android:textStyle="italic"
-                android:layout_below="@+id/des"
-                android:padding="5dp"
-                />
+                android:layout_below="@+id/movieImage"
+                android:padding="10dp"
+                >
+
+                <TextView
+                    android:id="@+id/desc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Description"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:paddingVertical="10dp"
+                    />
+                <!--            rating-->
+                <TextView
+                    android:id="@+id/des"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Spider-Man seeks the help of Doctor Strange to forget his exposed secret identity as Peter Parker. However, Strange's spell goes horribly wrong, leading to unwanted guests entering their universe."
+                    android:textColor="#B3FFFFFF"
+                    android:textSize="16dp"
+                    android:textStyle="italic"
+                    android:layout_below="@+id/desc"
+                    android:padding="5dp"
+                    />
+                <TextView
+                    android:id="@+id/actorName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="10dp"
+                    android:text="SEE MORE"
+                    android:textColor="#EFFF9807"
+                    android:textSize="16dp"
+                    android:textStyle="bold"
+                    android:layout_below="@+id/des"
+                    />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Other Movies"
+                    android:id="@+id/random_title"
+                    android:layout_below="@+id/actorName"
+                    android:textColor="@color/white"
+                    android:layout_marginTop="30dp"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    />
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerViewRandom"
+                    android:paddingHorizontal="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/random_title"
+                    android:clipToPadding="false"
+                    android:padding="4dp"
+                    android:scrollbars="vertical" />
+
+            </RelativeLayout>
+
+
 
 
 

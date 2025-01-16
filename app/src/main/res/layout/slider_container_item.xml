@@ -3,106 +3,109 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     app:cardElevation="8dp">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
         <!-- Background Image -->
         <ImageView
-            android:id="@+id/backgroundImage"
+            android:id="@+id/slideImage"
             android:layout_width="match_parent"
             android:layout_height="250dp"
             android:scaleType="centerCrop"
+            tools:srcCompat="@tools:sample/backgrounds/scenic"
             android:src="@drawable/background" />
 
-        <!-- Logo -->
-        <ImageView
-            android:id="@+id/logo"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_margin="8dp"
-            android:src="@drawable/panda" />
 
-        <!-- Title and IMDB Rating -->
-        <LinearLayout
-            android:id="@+id/titleContainer"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/logo"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="70dp"
-            android:orientation="vertical">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:padding="10dp"
+            android:background="#51000000">
 
+            <!-- Logo -->
+            <ImageView
+                android:id="@+id/logo"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/panda" />
+
+            <!-- Title and IMDB Rating -->
             <LinearLayout
+                android:id="@+id/titleContainer"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/logo"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="70dp"
+                android:orientation="vertical">
 
-                <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_marginEnd="5dp"
-                    android:src="@drawable/imdb_logo" />
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
 
-                <!-- IMDB Rating -->
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_marginEnd="5dp"
+                        android:src="@drawable/imdb_logo" />
+
+                    <!-- IMDB Rating -->
+                    <TextView
+                        android:id="@+id/imdbRating"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="7.3"
+                        android:textColor="@android:color/white"
+                        android:textSize="14sp" />
+
+                </LinearLayout>
+
+                <!-- Movie Title -->
                 <TextView
-                    android:id="@+id/imdbRating"
+                    android:id="@+id/titleMovie"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="7.3"
+                    android:layout_marginEnd="8dp"
+                    android:text="DeadPool"
                     android:textColor="@android:color/white"
-                    android:textSize="14sp" />
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
 
-            </LinearLayout>
-
-            <!-- Movie Title -->
-            <TextView
-                android:id="@+id/movieTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:text="DeadPool"
-                android:textColor="@android:color/white"
-                android:textSize="16sp"
-                android:textStyle="bold" />
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp">
-
-                <Button
-                    android:id="@+id/watchNowButton"
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingHorizontal="20dp"
-                    android:layout_alignParentBottom="true"
-                    android:layout_centerHorizontal="true"
-                    android:text="Watch Now"
-                    android:backgroundTint="#03A9F4"
-                    android:background="@drawable/rounded_full_button"
-                    android:textColor="#ffff" />
+                    android:layout_marginTop="10dp">
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:padding="10dp"
-                    android:layout_marginLeft="10dp"
-                    android:background="@drawable/rounded_full_button"
-                    android:backgroundTint="#3F51B5"
-                    android:src="@drawable/baseline_bookmark_24"
-                    />
+                    <Button
+                        android:id="@+id/watchNowButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:paddingHorizontal="10dp"
+                        android:text="Watch Now"
+                        android:textSize="14sp"
+                        android:background="@drawable/button_rounded"
+                        android:textColor="#ffff" />
+
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_gravity="center"
+                        android:id="@+id/bookmarkButton"
+                        android:padding="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:background="@drawable/button_rounded"
+                        android:backgroundTint="#3F51B5"
+                        android:src="@drawable/baseline_bookmark_24" />
+
+                </LinearLayout>
 
             </LinearLayout>
-
-
-        </LinearLayout>
-
-        <!-- Watch Button -->
-
+        </RelativeLayout>
     </RelativeLayout>
 </androidx.cardview.widget.CardView>

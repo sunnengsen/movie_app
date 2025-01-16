@@ -12,7 +12,7 @@ import com.example.movieapp.data.model.MovieModel
 import com.example.movieapp.ui.element.activity.MovieDetail
 import com.squareup.picasso.Picasso
 
-class RecommendAdapter(private val randomMovies: List<MovieModel>) :
+class RecommendAdapter(private var randomMovies: List<MovieModel>) :
     RecyclerView.Adapter<RecommendAdapter.RecommendViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecommendViewHolder {
@@ -34,6 +34,11 @@ class RecommendAdapter(private val randomMovies: List<MovieModel>) :
 
     override fun getItemCount(): Int {
         return randomMovies.size
+    }
+
+    fun updateData(newMovies: List<MovieModel>) {
+        randomMovies = newMovies
+        notifyDataSetChanged()
     }
 
     class RecommendViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

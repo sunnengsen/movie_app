@@ -28,4 +28,5 @@ class ApiResponse<T> (
     fun isInternalServerError(): Boolean {
         return status == "500"
     }
+
 }
