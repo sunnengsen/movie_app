@@ -11,7 +11,7 @@ import com.example.movieapp.R
 import com.example.movieapp.data.model.Actor
 import com.squareup.picasso.Picasso
 
-class ActorAdapter(private val actors: List<Actor>) : RecyclerView.Adapter<ActorAdapter.ActorViewHolder>() {
+class ActorAdapter(private var actors: List<Actor>) : RecyclerView.Adapter<ActorAdapter.ActorViewHolder>() {
 
     private val expandedPositions = mutableSetOf<Int>()
 
@@ -31,22 +31,28 @@ class ActorAdapter(private val actors: List<Actor>) : RecyclerView.Adapter<Actor
             val isExpanded = expandedPositions.contains(position)
             recyclerViewMovies.visibility = if (isExpanded) View.VISIBLE else View.GONE
 
+            if (isExpanded) {
+                val movieAdapter = MovieAdapter(actor.movies.map { it.movie })
+                recyclerViewMovies.layoutManager = LinearLayoutManager(itemView.context, LinearLayoutManager.HORIZONTAL, false)
+                recyclerViewMovies.adapter = movieAdapter
+            }
+
             itemView.setOnClickListener {
                 if (isExpanded) {
                     expandedPositions.remove(position)
                 } else {
                     expandedPositions.add(position)
-                    val movieAdapter = MovieAdapter(actor.movies.map { it.movie })
-                    recyclerViewMovies.layoutManager = LinearLayoutManager(itemView.context, LinearLayoutManager.HORIZONTAL, false)
-                    recyclerViewMovies.adapter = movieAdapter
                 }
-                notifyDataSetChanged()
+                notifyItemChanged(position)
             }
         }
     }
 
-    override fun getItemCount(): Int {
-        return actors.size
+    override fun getItemCount(): Int = actors.size
+
+    fun updateData(newActors: List<Actor>) {
+        actors = newActors
+        notifyDataSetChanged()
     }
 
     class ActorViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

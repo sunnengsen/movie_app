@@ -50,7 +50,7 @@
         android:id="@+id/noResultsTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="No results found"
+        android:text="Movie not found"
         android:gravity="center"
         android:visibility="gone"
         android:padding="16dp"

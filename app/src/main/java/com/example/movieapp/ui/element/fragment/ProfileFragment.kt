@@ -17,12 +17,11 @@ import com.example.movieapp.databinding.FragmentProfileBinding
 import com.example.movieapp.ui.element.activity.LoginActivity
 import com.example.movieapp.ui.element.activity.MainActivity
 import com.example.movieapp.ui.element.activity.MovieDetail
-import com.example.movieapp.ui.element.activity.SignUpActivity
 import com.example.movieapp.ui.element.adapter.BookmarkAdapter
 import com.example.movieapp.ui.viewmodel.ProfileViewModel
 import com.squareup.picasso.Picasso
 
-class ProfileFragment : Fragment() {
+class ProfileFragment : BaseFragment() {
     private lateinit var binding: FragmentProfileBinding
     private lateinit var viewModel: ProfileViewModel
     private lateinit var sharedPreferences: SharedPreferences
@@ -34,7 +33,8 @@ class ProfileFragment : Fragment() {
         binding = FragmentProfileBinding.inflate(inflater, container, false)
         viewModel = ViewModelProvider(this).get(ProfileViewModel::class.java)
 
-        sharedPreferences = requireContext().getSharedPreferences("MovieAppPrefs", Context.MODE_PRIVATE)
+        sharedPreferences =
+            requireContext().getSharedPreferences("MovieAppPrefs", Context.MODE_PRIVATE)
         val authToken = sharedPreferences.getString("auth_token", null)
 
         if (authToken == null) {
@@ -56,19 +56,33 @@ class ProfileFragment : Fragment() {
         viewModel.profileData.observe(viewLifecycleOwner) { state ->
             when (state.status) {
                 Status.LOADING -> {
-                    // Show loading indicator
+                    showLoading()
                 }
+
                 Status.SUCCESS -> {
                     val profileData = state.data
                     if (profileData != null) {
+                        hideLoading()
                         binding.profileName.text = profileData.username
                         binding.profileEmail.text = profileData.email
                         Picasso.get().load(profileData.profileUrl).into(binding.profileImage)
 
-                        binding.recyclerViewBookmarks.layoutManager = GridLayoutManager(requireContext(), 1, LinearLayoutManager.VERTICAL, false)
-                        binding.recyclerViewBookmarks.adapter = BookmarkAdapter(profileData.bookmarks ?: emptyList())
+                        if (profileData.bookmarks.isNullOrEmpty()) {
+                            binding.bookmarksTextView.visibility = View.GONE
+                        } else {
+                            binding.bookmarksTextView.visibility = View.VISIBLE
+                            binding.recyclerViewBookmarks.layoutManager = GridLayoutManager(
+                                requireContext(),
+                                1,
+                                LinearLayoutManager.VERTICAL,
+                                false
+                            )
+                            binding.recyclerViewBookmarks.adapter =
+                                BookmarkAdapter(profileData.bookmarks)
+                        }
                     }
                 }
+
                 Status.ERROR -> {
                     // Show error message
                 }

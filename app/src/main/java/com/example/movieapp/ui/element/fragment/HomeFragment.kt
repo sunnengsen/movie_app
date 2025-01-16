@@ -6,9 +6,11 @@ import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.movieapp.data.model.ApiState
 import com.example.movieapp.data.model.HomeData
 import com.example.movieapp.data.model.Status
@@ -18,7 +20,7 @@ import com.example.movieapp.ui.element.adapter.RecommendAdapter
 import com.example.movieapp.ui.element.adapter.SlideAdapter
 import com.example.movieapp.ui.viewmodel.HomeViewModel
 
-class HomeFragment : Fragment() {
+class HomeFragment : BaseFragment() {
     private lateinit var binding: FragmentHomeBinding
     private lateinit var viewModel: HomeViewModel
     private val handler = Handler(Looper.getMainLooper())
@@ -46,59 +48,77 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.recyclerViewLatest.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-        binding.recyclerViewRandom.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-        binding.recyclerViewTop.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-
+        binding.recyclerViewLatest.apply {
+            layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        }
+        binding.recyclerViewRandom.apply {
+            layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        }
+        binding.recyclerViewTop.apply {
+            layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        }
 
         viewModel.homeData.observe(viewLifecycleOwner) { state ->
-            handleState(state)
+            handleState(
+                state,
+                binding.recyclerViewLatest,
+                binding.latestMovies,
+                binding.randomMovies,
+                binding.topMovies,
+                binding.viewAllLatest,
+                binding.viewAllRandom,
+                binding.viewAllTop
+            )
         }
         viewModel.loadHomeData()
     }
 
-    private fun handleState(state: ApiState<HomeData>) {
+    private fun handleState(
+        state: ApiState<HomeData>,
+        recyclerView: RecyclerView,
+        latestMoviesTextView: TextView,
+        randomMoviesTextView: TextView,
+        topMoviesTextView: TextView,
+        viewAllLatestTextView: TextView,
+        viewAllRandomTextView: TextView,
+        viewAllTopTextView: TextView
+    ) {
+        val viewsToToggle = listOf(
+            latestMoviesTextView,
+            randomMoviesTextView,
+            topMoviesTextView,
+            viewAllLatestTextView,
+            viewAllRandomTextView,
+            viewAllTopTextView
+        )
+
         when (state.status) {
-            Status.LOADING -> {
-                showLoading()
-            }
             Status.SUCCESS -> {
+                state.data?.let {
+                    showHomeData(it)
+                }
                 hideLoading()
-                showHomeData(state.data!!)
+                viewsToToggle.forEach { it.visibility = View.VISIBLE }
             }
             Status.ERROR -> {
-                hideLoading()
                 showAlert()
+                viewsToToggle.forEach { it.visibility = View.GONE }
+            }
+            Status.LOADING -> {
+                showLoading()
+                viewsToToggle.forEach { it.visibility = View.GONE }
             }
         }
     }
 
     private fun showHomeData(homeData: HomeData) {
-        val latestAdapter = LatestAdapter(homeData.latestMovies)
-        binding.recyclerViewLatest.adapter = latestAdapter
-
-        val recommendAdapter = RecommendAdapter(homeData.randomMovies)
-        binding.recyclerViewRandom.adapter = recommendAdapter
-
-        val topAdapter = RecommendAdapter(homeData.topMovies)
-        binding.recyclerViewTop.adapter = topAdapter
-
+        binding.recyclerViewLatest.adapter = LatestAdapter(homeData.latestMovies)
+        binding.recyclerViewRandom.adapter = RecommendAdapter(homeData.randomMovies)
+        binding.recyclerViewTop.adapter = RecommendAdapter(homeData.topMovies)
         slideAdapter = SlideAdapter(homeData.slides)
         binding.viewPagerSlide.adapter = slideAdapter
 
         handler.postDelayed(autoScrollRunnable, 3000)
-    }
-
-    private fun showLoading() {
-        // Implement loading UI
-    }
-
-    private fun hideLoading() {
-        // Hide loading UI
-    }
-
-    private fun showAlert() {
-        // Show error alert
     }
 
     override fun onDestroyView() {

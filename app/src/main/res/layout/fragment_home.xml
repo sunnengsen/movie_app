@@ -32,11 +32,13 @@
                    android:layout_height="wrap_content"
                    android:layout_weight="1"
                    android:text="Latest Movies"
+                   android:id="@+id/latest_movies"
                    android:textColor="@color/white"
                    android:textSize="16sp"
                    android:textStyle="bold" />
 
                <TextView
+                   android:id="@+id/view_all_latest"
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
                    android:layout_marginStart="8dp"
@@ -67,6 +69,7 @@
 
                <TextView
                    android:layout_width="0dp"
+                   android:id="@+id/random_movies"
                    android:layout_height="wrap_content"
                    android:layout_weight="1"
                    android:text="Random Movies"
@@ -77,6 +80,7 @@
                <TextView
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
+                   android:id="@+id/view_all_random"
                    android:layout_marginStart="8dp"
                    android:text="View All"
                    android:textColor="@color/white"
@@ -104,6 +108,7 @@
 
                <TextView
                    android:layout_width="0dp"
+                   android:id="@+id/top_movies"
                    android:layout_height="wrap_content"
                    android:layout_weight="1"
                    android:text="Top Movies"
@@ -114,6 +119,7 @@
                <TextView
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
+                   android:id="@+id/view_all_top"
                    android:layout_marginStart="8dp"
                    android:text="View All"
                    android:textColor="@color/white"

@@ -63,20 +63,20 @@ class SearchFragment : BaseFragment() {
 
     private fun handleState(state: ApiState<List<Movie>>) {
         when (state.status) {
-            Status.LOADING -> {
-                showLoading()
-                Log.d("SearchFragment", "Loading data...")
-            }
             Status.SUCCESS -> {
+                showMovieData(state.data ?: emptyList())
                 hideLoading()
-                Log.d("SearchFragment", "Data loaded successfully: ${state.data}")
-                allMovies = state.data!!
-                showMovieData(allMovies)
+                binding.noResultsTextView.visibility = if (state.data.isNullOrEmpty()) View.VISIBLE else View.GONE
             }
             Status.ERROR -> {
-                hideLoading()
-                Log.e("SearchFragment", "Error loading data: ${state.message}")
+                Log.e("SearchFragment", state.message ?: "Unknown error")
                 showAlert()
+                binding.noResultsTextView.visibility = View.GONE
+            }
+            Status.LOADING -> {
+                showLoading()
+                Log.d("SearchFragment", "Loading")
+                binding.noResultsTextView.visibility = View.GONE
             }
         }
     }
