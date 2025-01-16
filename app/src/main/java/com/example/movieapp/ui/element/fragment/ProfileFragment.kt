@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -83,7 +84,7 @@ class ProfileFragment : BaseFragment() {
                                 LinearLayoutManager.VERTICAL,
                                 false
                             )
-                            binding.recyclerViewBookmarks.adapter = BookmarkAdapter(profileData.bookmarks.toMutableList(), viewModel)
+                            binding.recyclerViewBookmarks.adapter = BookmarkAdapter(profileData.bookmarks.toMutableList(), viewModel, viewLifecycleOwner)
                         }
                     }
                 }
@@ -91,6 +92,7 @@ class ProfileFragment : BaseFragment() {
                 Status.ERROR -> {
                     // Show error message
                     Toast.makeText(context, state.message, Toast.LENGTH_SHORT).show()
+                    Log.d("ProfileFragment", "Error: ${state.message}")
                 }
             }
         }

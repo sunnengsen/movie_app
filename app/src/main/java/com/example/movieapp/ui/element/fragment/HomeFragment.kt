@@ -73,6 +73,14 @@ class HomeFragment : BaseFragment() {
         viewModel.loadHomeData()
     }
 
+    override fun onResume() {
+        super.onResume()
+        if (::slideAdapter.isInitialized) {
+            slideAdapter.fetchBookmarks(requireContext())
+            handler.postDelayed(autoScrollRunnable, 3000)
+        }
+    }
+
     private fun handleState(
         state: ApiState<HomeData>,
         recyclerView: RecyclerView,
@@ -115,7 +123,7 @@ class HomeFragment : BaseFragment() {
         binding.recyclerViewLatest.adapter = LatestAdapter(homeData.latestMovies)
         binding.recyclerViewRandom.adapter = RecommendAdapter(homeData.randomMovies)
         binding.recyclerViewTop.adapter = RecommendAdapter(homeData.topMovies)
-        slideAdapter = SlideAdapter(homeData.slides)
+        slideAdapter = SlideAdapter(homeData.slides, requireContext())
         binding.viewPagerSlide.adapter = slideAdapter
 
         handler.postDelayed(autoScrollRunnable, 3000)

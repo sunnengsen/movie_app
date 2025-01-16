@@ -1,7 +1,6 @@
 package com.example.movieapp.data.api.service
 
 import com.example.movieapp.data.model.Actor
-import com.example.movieapp.data.model.ActorNDirectorData
 import com.example.movieapp.data.model.ApiResponse
 import com.example.movieapp.data.model.BookmarkRequest
 import com.example.movieapp.data.model.BookmarkResponse
@@ -32,7 +31,7 @@ interface ApiService {
     suspend fun bookmark(@Body response: BookmarkRequest): ApiResponse<BookmarkResponse>
 
     @DELETE("bookmark/{id}")
-    suspend fun removeBookmark(@Path("id") id: Int): ApiResponse<BookmarkResponse>
+    suspend fun removeBookmark(@Path("id") id: BookmarkRequest): ApiResponse<BookmarkResponse>
 
     @GET("home")
     suspend fun loadHomeData(): ApiResponse<HomeData>
@@ -97,4 +96,6 @@ interface ApiService {
         @Path("id") bookmarkId: Int
     ): ApiResponse<ProfileData>
 
+@GET("bookmark")
+suspend fun getBookmarks(@Header("Authorization") token: String): ApiResponse<List<BookmarkResponse>>
 }

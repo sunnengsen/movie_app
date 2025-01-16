@@ -1,9 +1,11 @@
 package com.example.movieapp.ui.element.adapter
 
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.lifecycle.LifecycleOwner
 import androidx.recyclerview.widget.RecyclerView
 import com.example.movieapp.data.model.Bookmark
 import com.example.movieapp.data.model.Status
@@ -14,7 +16,8 @@ import com.squareup.picasso.Picasso
 
 class BookmarkAdapter(
     private val bookmarks: MutableList<Bookmark>,
-    private val viewModel: ProfileViewModel
+    private val viewModel: ProfileViewModel,
+    private val lifecycleOwner: LifecycleOwner
 ) : RecyclerView.Adapter<BookmarkAdapter.BookmarkViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BookmarkViewHolder {
@@ -46,18 +49,15 @@ class BookmarkAdapter(
                 context.startActivity(intent)
             }
 
+
             // Set click listener for remove button
             binding.removeBookmarkButton.setOnClickListener {
-                viewModel.removeBookmark(itemView.context, bookmark.movie.id).observeForever { state ->
-                    if (state.status == Status.SUCCESS) {
-                        // Update the adapter's data and notify the change
-                        bookmarks.remove(bookmark)
-                        notifyDataSetChanged()
-                    } else {
-                        // Handle error
-                        Toast.makeText(itemView.context, state.message, Toast.LENGTH_SHORT).show()
-                    }
-                }
+                val context = itemView.context
+                viewModel.removeBookmark(context, bookmark.id)
+                bookmarks.removeAt(adapterPosition)
+                notifyItemRemoved(adapterPosition)
+                Toast.makeText(context, "Bookmark removed", Toast.LENGTH_SHORT).show()
+
             }
         }
     }
