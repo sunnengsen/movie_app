@@ -1,5 +1,6 @@
 package com.example.movieapp.ui.element.fragment
 
+import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -13,8 +14,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.movieapp.data.model.ApiState
 import com.example.movieapp.data.model.HomeData
+import com.example.movieapp.data.model.MovieModel
 import com.example.movieapp.data.model.Status
 import com.example.movieapp.databinding.FragmentHomeBinding
+import com.example.movieapp.ui.element.activity.ViewAllActivity
 import com.example.movieapp.ui.element.adapter.LatestAdapter
 import com.example.movieapp.ui.element.adapter.RecommendAdapter
 import com.example.movieapp.ui.element.adapter.SlideAdapter
@@ -71,6 +74,16 @@ class HomeFragment : BaseFragment() {
             )
         }
         viewModel.loadHomeData()
+
+        binding.viewAllLatest.setOnClickListener {
+            navigateToViewAllActivity("latest", viewModel.homeData.value?.data?.latestMovies ?: emptyList())
+        }
+        binding.viewAllRandom.setOnClickListener {
+            navigateToViewAllActivity("random", viewModel.homeData.value?.data?.randomMovies ?: emptyList())
+        }
+        binding.viewAllTop.setOnClickListener {
+            navigateToViewAllActivity("top", viewModel.homeData.value?.data?.topMovies ?: emptyList())
+        }
     }
 
     override fun onResume() {
@@ -127,6 +140,13 @@ class HomeFragment : BaseFragment() {
         binding.viewPagerSlide.adapter = slideAdapter
 
         handler.postDelayed(autoScrollRunnable, 3000)
+    }
+
+    private fun navigateToViewAllActivity(category: String, movies: List<MovieModel>) {
+        val intent = Intent(context, ViewAllActivity::class.java)
+        intent.putExtra("category", category)
+        intent.putParcelableArrayListExtra("movies", ArrayList(movies))
+        startActivity(intent)
     }
 
     override fun onDestroyView() {

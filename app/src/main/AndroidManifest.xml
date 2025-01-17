@@ -42,6 +42,10 @@
             android:name=".ui.element.activity.MovieDetail"
             android:exported="true" />
 
+        <activity
+            android:name=".ui.element.activity.ViewAllActivity"
+            android:exported="true" />
+
 
     </application>
 

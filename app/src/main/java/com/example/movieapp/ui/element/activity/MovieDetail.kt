@@ -91,7 +91,7 @@ class MovieDetail : AppCompatActivity() {
                 if (response.status == "200") {
                     val randomMovies = response.data.randomMovies
                     withContext(Dispatchers.Main) {
-                        randomAdapter.updateData(randomMovies)
+                        randomAdapter.updateMovies(randomMovies)
                     }
                 } else {
                     // Handle error

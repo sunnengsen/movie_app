@@ -39,6 +39,6 @@ class LatestAdapter(private val latestMovies: List<MovieModel>) :
 
     class LatestViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val movieImage: ImageView = itemView.findViewById(R.id.movieImage)
-        val movieTitle: TextView = itemView.findViewById(R.id.movieTitle)
+        val movieTitle: TextView = itemView.findViewById(R.id.rating)
     }
 }

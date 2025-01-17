@@ -12,7 +12,7 @@ import com.example.movieapp.data.model.MovieModel
 import com.example.movieapp.ui.element.activity.MovieDetail
 import com.squareup.picasso.Picasso
 
-class RecommendAdapter(private var randomMovies: List<MovieModel>) :
+class RecommendAdapter(private var movies: List<MovieModel>) :
     RecyclerView.Adapter<RecommendAdapter.RecommendViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecommendViewHolder {
@@ -21,7 +21,7 @@ class RecommendAdapter(private var randomMovies: List<MovieModel>) :
     }
 
     override fun onBindViewHolder(holder: RecommendViewHolder, position: Int) {
-        val movie = randomMovies[position]
+        val movie = movies[position]
         holder.movieTitle.text = movie.rating
         Picasso.get().load(movie.posterUrl).into(holder.movieImage)
         holder.itemView.setOnClickListener {
@@ -33,16 +33,16 @@ class RecommendAdapter(private var randomMovies: List<MovieModel>) :
     }
 
     override fun getItemCount(): Int {
-        return randomMovies.size
+        return movies.size
     }
 
-    fun updateData(newMovies: List<MovieModel>) {
-        randomMovies = newMovies
+    fun updateMovies(newMovies: List<MovieModel>) {
+        movies = newMovies
         notifyDataSetChanged()
     }
 
     class RecommendViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val movieImage: ImageView = itemView.findViewById(R.id.movieImage)
-        val movieTitle: TextView = itemView.findViewById(R.id.movieTitle)
+        val movieTitle: TextView = itemView.findViewById(R.id.rating)
     }
 }

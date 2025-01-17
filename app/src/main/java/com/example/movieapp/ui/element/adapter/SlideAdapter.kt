@@ -41,6 +41,7 @@ class SlideAdapter(private val slideMovie: List<MovieModel>, context: Context) :
         val movie = slideMovie[position]
         Picasso.get().load(movie.banner).into(holder.movieImage)
         holder.movieTitle.text = movie.title
+        holder.rating.text = movie.rating
         holder.itemView.setOnClickListener {
             val context = holder.itemView.context
             val intent = Intent(context, MovieDetail::class.java)
@@ -57,38 +58,37 @@ class SlideAdapter(private val slideMovie: List<MovieModel>, context: Context) :
         return slideMovie.size
     }
 
-   fun fetchBookmarks(context: Context) {
-    val sharedPreferences = context.getSharedPreferences("MovieAppPrefs", Context.MODE_PRIVATE)
-    val token = sharedPreferences.getString("auth_token", null)
-    currentUserId = sharedPreferences.getInt("user_id", -1)
+    fun fetchBookmarks(context: Context) {
+        val sharedPreferences = context.getSharedPreferences("MovieAppPrefs", Context.MODE_PRIVATE)
+        val token = sharedPreferences.getString("auth_token", null)
+        currentUserId = sharedPreferences.getInt("user_id", -1)
 
-    if (token != null && currentUserId != -1) {
-        CoroutineScope(Dispatchers.IO).launch {
-            try {
-                val response = ApiClient.get().apiService.loadProfile(token)
-                withContext(Dispatchers.Main) {
-                    if (response.status == "200") {
-                        bookmarkedMovieIds.clear()
-                        response.data.bookmarks?.let { bookmarks ->
-                            bookmarkedMovieIds.addAll(bookmarks.map { it.movie.id })
+        if (token != null && currentUserId != -1) {
+            CoroutineScope(Dispatchers.IO).launch {
+                try {
+                    val response = ApiClient.get().apiService.loadProfile(token)
+                    withContext(Dispatchers.Main) {
+                        if (response.status == "200") {
+                            bookmarkedMovieIds.clear()
+                            response.data.bookmarks?.let { bookmarks ->
+                                bookmarkedMovieIds.addAll(bookmarks.map { it.movie.id })
+                            }
+                            notifyDataSetChanged()
+                        } else {
+                            Log.e("SlideAdapter", "Failed to fetch bookmarks: ${response.status}")
                         }
-                        notifyDataSetChanged()
-                    } else {
-                        Log.e("SlideAdapter", "Failed to fetch bookmarks: ${response.status}")
-
+                    }
+                } catch (e: Exception) {
+                    withContext(Dispatchers.Main) {
+                        Log.e("SlideAdapter", "Error: ${e.message}")
                     }
                 }
-            } catch (e: Exception) {
-                withContext(Dispatchers.Main) {
-                    Log.e("SlideAdapter", "Error: ${e.message}")
-                }
             }
+        } else {
+            Log.e("SlideAdapter", "Token or User ID is missing")
+            Toast.makeText(context, "Token or user ID is missing", Toast.LENGTH_SHORT).show()
         }
-    } else {
-        Log.e("SlideAdapter", "Token or User ID is missing")
-        Toast.makeText(context, "Token or user ID is missing", Toast.LENGTH_SHORT).show()
     }
-}
 
     private fun updateBookmarkButton(holder: SlideViewHolder, movie: MovieModel) {
         val context = holder.itemView.context
@@ -136,5 +136,6 @@ class SlideAdapter(private val slideMovie: List<MovieModel>, context: Context) :
         val movieImage: ImageView = itemView.findViewById(R.id.slideImage)
         val movieTitle: TextView = itemView.findViewById(R.id.titleMovie)
         val bookmarkButton: ImageView = itemView.findViewById(R.id.bookmarkButton)
+        val rating: TextView = itemView.findViewById(R.id.rating)
     }
 }

@@ -43,6 +43,6 @@ class MovieAdapter(private var movies: List<Movie>) :
 
     class MovieViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val movieImage: ImageView = itemView.findViewById(R.id.movieImage)
-        val movieTitle: TextView = itemView.findViewById(R.id.movieTitle)
+        val movieTitle: TextView = itemView.findViewById(R.id.rating)
     }
 }
