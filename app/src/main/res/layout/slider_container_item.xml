@@ -25,7 +25,7 @@
             android:layout_width="match_parent"
             android:layout_height="250dp"
             android:padding="10dp"
-            android:background="#51000000">
+            android:background="@drawable/gradient_background">
 
             <!-- Logo -->
             <ImageView
@@ -41,7 +41,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/logo"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="70dp"
+                android:layout_marginTop="85dp"
                 android:orientation="vertical">
 
                 <LinearLayout
@@ -92,18 +92,27 @@
 
                 <LinearLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="45dp"
                     android:layout_marginTop="10dp">
 
-                    <Button
+                    <TextView
                         android:id="@+id/watchNowButton"
                         android:layout_width="wrap_content"
                         android:layout_height="40dp"
-                        android:paddingHorizontal="10dp"
+                        android:paddingHorizontal="20dp"
                         android:text="Watch Now"
                         android:textSize="14sp"
-                        android:background="@drawable/button_rounded"
-                        android:textColor="#ffff" />
+                        android:layout_marginEnd="10dp"
+                        android:textColor="#ffff"
+                        style="@style/CustomButtonStyle"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:textSize="28sp"
+                        android:textColor="#BCD9D9D9"
+                        android:text="|"
+                        />
 
                     <ImageView
                         android:layout_width="40dp"
@@ -112,10 +121,8 @@
                         android:id="@+id/bookmarkButton"
                         android:padding="10dp"
                         android:layout_marginLeft="10dp"
-                        android:background="@drawable/button_rounded"
-                        android:backgroundTint="#3F51B5"
+                        android:background="@drawable/back_rounded"
                         android:src="@drawable/baseline_bookmark_24" />
-
                 </LinearLayout>
 
             </LinearLayout>

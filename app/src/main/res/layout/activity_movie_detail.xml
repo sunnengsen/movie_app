@@ -54,6 +54,7 @@
                         android:layout_width="34dp"
                         android:layout_height="34dp"
                         android:background="@drawable/back_rounded"
+                        android:padding="5dp"
                         android:layout_marginEnd="10dp"
                         android:id="@+id/bookmarkButton"
                         android:src="@drawable/ic_action_bookmark" />
@@ -156,7 +157,7 @@
                                 >
 
                                 <TextView
-                                    android:id="@+id/releaseDate"
+                                    android:id="@+id/duration"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="134min"
@@ -242,25 +243,93 @@
                     android:layout_below="@+id/desc"
                     android:padding="5dp"
                     />
-                <TextView
-                    android:id="@+id/actorName"
-                    android:layout_width="wrap_content"
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingTop="10dp"
-                    android:text="SEE MORE"
-                    android:textColor="#EFFF9807"
-                    android:textSize="16dp"
-                    android:textStyle="bold"
+                    android:id="@+id/detail"
                     android:layout_below="@+id/des"
-                    />
+                    >
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        >
+
+                        <LinearLayout
+                            android:id="@+id/firstLayout"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            >
+
+                            <TextView
+                                android:id="@+id/release"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Release Date"
+                                android:textColor="@color/white"
+                                android:textSize="20sp"
+                                android:textStyle="bold"
+                                android:paddingVertical="10dp"
+                                />
+                            <TextView
+                                android:id="@+id/releaseDate"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="#B3FFFFFF"
+                                android:text="20/05/2013"
+                                android:textSize="16dp"
+                                android:textStyle="italic"
+                                android:padding="5dp"
+                                />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/secondLayout"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/firstLayout"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <TextView
+                                android:id="@+id/actor"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingVertical="10dp"
+                                android:text="Director Name"
+                                android:textColor="@color/white"
+                                android:textSize="20sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/actorName"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:padding="5dp"
+                                android:text="Tom Holland"
+                                android:textColor="#B3FFFFFF"
+                                android:textSize="16dp"
+                                android:textStyle="italic" />
+
+                        </LinearLayout>
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </RelativeLayout>
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Other Movies"
                     android:id="@+id/random_title"
-                    android:layout_below="@+id/actorName"
+                    android:layout_below="@+id/detail"
                     android:textColor="@color/white"
-                    android:layout_marginTop="30dp"
+                    android:layout_marginTop="20dp"
                     android:textSize="20sp"
                     android:textStyle="bold"
                     />

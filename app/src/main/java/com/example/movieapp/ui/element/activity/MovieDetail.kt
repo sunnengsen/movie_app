@@ -108,8 +108,10 @@ class MovieDetail : AppCompatActivity() {
         findViewById<TextView>(R.id.titleMovie).text = movie.title
         findViewById<TextView>(R.id.des).text = movie.description
         findViewById<TextView>(R.id.rating).text = movie.rating
-        findViewById<TextView>(R.id.movieTypeName).text = movie.movieTypeName?.name ?: "N/A"
+        findViewById<TextView>(R.id.movieTypeName).text = movie.movieType.name?: "N/A"
         findViewById<TextView>(R.id.releaseDate).text = movie.releaseDate
+        findViewById<TextView>(R.id.actorName).text = movie.actorName
+        findViewById<TextView>(R.id.duration).text = movie.duration
         movieUrl = movie.movieUrl ?: ""
     }
 

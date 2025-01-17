@@ -25,6 +25,7 @@
                android:layout_below="@+id/viewPagerSlide"
                android:layout_marginTop="10dp"
                android:paddingHorizontal="10dp"
+               android:paddingVertical="10dp"
                android:orientation="horizontal">
 
                <TextView
@@ -34,7 +35,7 @@
                    android:text="Latest Movies"
                    android:id="@+id/latest_movies"
                    android:textColor="@color/white"
-                   android:textSize="16sp"
+                   android:textSize="20sp"
                    android:textStyle="bold" />
 
                <TextView
@@ -43,8 +44,8 @@
                    android:layout_height="wrap_content"
                    android:layout_marginStart="8dp"
                    android:text="View All"
-                   android:textColor="@color/white"
-                   android:textSize="16sp"
+                   android:textColor="#2196F3"
+                   android:textSize="14sp"
                    android:textStyle="bold" />
            </LinearLayout>
 
@@ -65,6 +66,7 @@
                android:layout_below="@+id/recyclerViewLatest"
                android:layout_marginTop="10dp"
                android:paddingHorizontal="10dp"
+               android:paddingVertical="10dp"
                android:orientation="horizontal">
 
                <TextView
@@ -74,7 +76,7 @@
                    android:layout_weight="1"
                    android:text="Random Movies"
                    android:textColor="@color/white"
-                   android:textSize="16sp"
+                   android:textSize="20sp"
                    android:textStyle="bold" />
 
                <TextView
@@ -83,8 +85,8 @@
                    android:id="@+id/view_all_random"
                    android:layout_marginStart="8dp"
                    android:text="View All"
-                   android:textColor="@color/white"
-                   android:textSize="16sp"
+                   android:textColor="#2196F3"
+                   android:textSize="14sp"
                    android:textStyle="bold" />
            </LinearLayout>
 
@@ -104,6 +106,7 @@
                android:layout_below="@+id/recyclerViewRandom"
                android:layout_marginTop="10dp"
                android:paddingHorizontal="10dp"
+               android:paddingVertical="10dp"
                android:orientation="horizontal">
 
                <TextView
@@ -113,7 +116,7 @@
                    android:layout_weight="1"
                    android:text="Top Movies"
                    android:textColor="@color/white"
-                   android:textSize="16sp"
+                   android:textSize="20sp"
                    android:textStyle="bold" />
 
                <TextView
@@ -122,8 +125,8 @@
                    android:id="@+id/view_all_top"
                    android:layout_marginStart="8dp"
                    android:text="View All"
-                   android:textColor="@color/white"
-                   android:textSize="16sp"
+                   android:textColor="#2196F3"
+                   android:textSize="14sp"
                    android:textStyle="bold" />
            </LinearLayout>
            <androidx.recyclerview.widget.RecyclerView

@@ -5,6 +5,11 @@
         <item name="cornerSize">16dp</item> <!-- Adjust corner size as needed -->
     </style>
 
+        <style name="CustomButtonStyle" parent="Widget.AppCompat.Button">
+            <item name="android:background">@drawable/button_rounded</item>
+            <item name="android:textColor">#ffff</item>
+        </style>
+
     <style name="RoundedProfile">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">75dp</item> <!-- Adjust corner size as needed -->
