@@ -90,6 +90,7 @@
                         android:layout_gravity="center"
                         android:layout_weight="1"
                         android:autofillHints="emailAddress"
+                        android:textColor="@color/white"
                         android:hint="Email"
                         android:padding="14dp"
                         android:textColorHint="#D5CECE" />

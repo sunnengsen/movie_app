@@ -44,7 +44,7 @@ android {
             dimension = "Movie"
             applicationId = "com.example.movieapp.dev"
             resValue("string", "app_name", "Movie Dev")
-            buildConfigField("String", "API_BASE_URL", "\"http://10.0.2.2:8080/\"")
+            buildConfigField("String", "API_BASE_URL", "\"http://10.0.2.2:8082/\"")
         }
         create("prd") {
             dimension = "Movie"
