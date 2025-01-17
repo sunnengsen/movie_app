@@ -133,9 +133,9 @@ class HomeFragment : BaseFragment() {
     }
 
     private fun showHomeData(homeData: HomeData) {
-        binding.recyclerViewLatest.adapter = LatestAdapter(homeData.latestMovies)
-        binding.recyclerViewRandom.adapter = RecommendAdapter(homeData.randomMovies)
-        binding.recyclerViewTop.adapter = RecommendAdapter(homeData.topMovies)
+        binding.recyclerViewLatest.adapter = LatestAdapter(homeData.latestMovies.take(5))
+        binding.recyclerViewRandom.adapter = RecommendAdapter(homeData.randomMovies.take(5))
+        binding.recyclerViewTop.adapter = RecommendAdapter(homeData.topMovies.take(5))
         slideAdapter = SlideAdapter(homeData.slides, requireContext())
         binding.viewPagerSlide.adapter = slideAdapter
 

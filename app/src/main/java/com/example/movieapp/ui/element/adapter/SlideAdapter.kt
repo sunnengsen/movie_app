@@ -16,6 +16,7 @@ import com.example.movieapp.data.api.client.ApiClient
 import com.example.movieapp.data.model.BookmarkRequest
 import com.example.movieapp.data.model.MovieModel
 import com.example.movieapp.ui.element.activity.MovieDetail
+import com.example.movieapp.ui.element.activity.PlayMovieActivity
 import com.squareup.picasso.Picasso
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -52,10 +53,16 @@ class SlideAdapter(private val slideMovie: List<MovieModel>, context: Context) :
         holder.bookmarkButton.setOnClickListener {
             postBookmark(holder.itemView.context, movie, holder)
         }
+        holder.playButton.setOnClickListener {
+            val context = holder.itemView.context
+            val intent = Intent(context, PlayMovieActivity::class.java)
+            intent.putExtra("MOVIE_URL", movie.movieUrl)
+            context.startActivity(intent)
+        }
     }
 
     override fun getItemCount(): Int {
-        return slideMovie.size
+        return minOf(slideMovie.size, 5)
     }
 
     fun fetchBookmarks(context: Context) {
@@ -137,5 +144,6 @@ class SlideAdapter(private val slideMovie: List<MovieModel>, context: Context) :
         val movieTitle: TextView = itemView.findViewById(R.id.titleMovie)
         val bookmarkButton: ImageView = itemView.findViewById(R.id.bookmarkButton)
         val rating: TextView = itemView.findViewById(R.id.rating)
+        val playButton: TextView = itemView.findViewById(R.id.watchNowButton) // Add this line
     }
 }
