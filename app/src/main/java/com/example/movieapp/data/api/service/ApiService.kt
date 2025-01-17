@@ -12,9 +12,11 @@ import com.example.movieapp.data.model.auth.LoginRequest
 import com.example.movieapp.data.model.auth.LoginResponse
 import com.example.movieapp.data.model.auth.SignUpRequest
 import retrofit2.http.Body
+import retrofit2.http.DELETE
 import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.POST
+import retrofit2.http.PUT
 import retrofit2.http.Path
 
 interface ApiService {
@@ -74,5 +76,17 @@ interface ApiService {
 
     @GET("movie/search/{title}")
     suspend fun searchMovie(@Path("title") title: String): ApiResponse<List<Movie>>
+
+    @PUT("profile")
+    suspend fun updateProfile(
+        @Header("Authorization") token: String,
+        @Body profileData: ProfileData
+    ): ApiResponse<ProfileData>
+
+    @DELETE("bookmark/{id}")
+    suspend fun deleteBookmark(
+        @Header("Authorization") token: String,
+        @Path("id") bookmarkId: Int
+    ): ApiResponse<ProfileData>
 
 }

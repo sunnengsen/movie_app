@@ -10,6 +10,7 @@ import com.example.movieapp.data.model.ApiResponse
 import com.example.movieapp.data.model.ApiState
 import com.example.movieapp.data.model.ProfileData
 import kotlinx.coroutines.launch
+import android.util.Log
 
 class ProfileViewModel : ViewModel() {
     private val _profileData = MutableLiveData<ApiState<ProfileData>>()
@@ -37,5 +38,60 @@ class ProfileViewModel : ViewModel() {
         } else {
             _profileData.postValue(ApiState.error("Token is missing"))
         }
+    }
+
+    fun updateProfile(context: Context, profileData: ProfileData): LiveData<ApiState<ProfileData>> {
+        val result = MutableLiveData<ApiState<ProfileData>>()
+        val sharedPreferences = context.getSharedPreferences("MovieAppPrefs", Context.MODE_PRIVATE)
+        val token = sharedPreferences.getString("auth_token", null)
+
+        if (token != null) {
+            viewModelScope.launch {
+                try {
+                    Log.d("ProfileViewModel", "Updating profile with data: $profileData")
+                    val response: ApiResponse<ProfileData> = ApiClient.get().apiService.updateProfile("Bearer $token", profileData)
+                    if (response.status == "200") {
+                        result.postValue(ApiState.success(response.data))
+                        // Refetch the profile data
+                        loadProfile(context)
+                    } else {
+                        result.postValue(ApiState.error(response.message))
+                    }
+                } catch (e: Exception) {
+                    result.postValue(ApiState.error(e.message ?: "Unknown error"))
+                }
+            }
+        } else {
+            result.postValue(ApiState.error("Token is missing"))
+        }
+
+        return result
+    }
+
+    fun removeBookmark(context: Context, movieId: Int): LiveData<ApiState<ProfileData>> {
+        val result = MutableLiveData<ApiState<ProfileData>>()
+        val sharedPreferences = context.getSharedPreferences("MovieAppPrefs", Context.MODE_PRIVATE)
+        val token = sharedPreferences.getString("auth_token", null)
+
+        if (token != null) {
+            viewModelScope.launch {
+                try {
+                    val response: ApiResponse<ProfileData> = ApiClient.get().apiService.deleteBookmark("Bearer $token", movieId)
+                    if (response.status == "200") {
+                        result.postValue(ApiState.success(response.data))
+                        // Refetch the profile data
+                        loadProfile(context)
+                    } else {
+                        result.postValue(ApiState.error(response.message))
+                    }
+                } catch (e: Exception) {
+                    result.postValue(ApiState.error(e.message ?: "Unknown error"))
+                }
+            }
+        } else {
+            result.postValue(ApiState.error("Token is missing"))
+        }
+
+        return result
     }
 }

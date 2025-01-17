@@ -19,7 +19,6 @@
         android:padding="16dp"
         android:scrollbars="none">
 
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -29,9 +28,15 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-
-                <!-- Back Button (ImageView) -->
-
+                <Button
+                    android:id="@+id/edit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/bg_transparent"
+                    android:text="EDIT"
+                    android:textColor="@color/teal_700"
+                    android:textColorHint="@color/teal_700" />
 
                 <!-- Centered TextView -->
                 <TextView
@@ -58,7 +63,6 @@
 
             </RelativeLayout>
 
-
             <!-- Profile Section -->
             <LinearLayout
                 android:layout_width="match_parent"
@@ -69,15 +73,6 @@
                 android:orientation="vertical">
 
                 <!-- Profile Image -->
-                <!--                <ImageView-->
-                <!--                    android:id="@+id/profileImage"-->
-                <!--                    android:layout_width="100dp"-->
-                <!--                    android:layout_height="100dp"-->
-                <!--                    android:layout_gravity="center"-->
-                <!--                    android:background="@drawable/background"-->
-                <!--                    android:contentDescription="Profile Image"-->
-                <!--                    android:scaleType="centerCrop"-->
-                <!--                    android:src="@drawable/background" />-->
                 <com.google.android.material.imageview.ShapeableImageView
                     android:id="@+id/profileImage"
                     android:layout_width="150dp"
@@ -92,39 +87,44 @@
                     tools:ignore="MissingConstraints" />
 
                 <!-- Profile Name -->
-                <TextView
+                <EditText
                     android:id="@+id/profileName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:text="Kim Jennie"
+                    android:hint="Name"
                     android:textColor="@color/white"
                     android:textSize="26sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:enabled="false" />
 
                 <!-- Information -->
-                <TextView
+                <EditText
                     android:id="@+id/profileEmail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
-                    android:text="kim.jennie@gmail.com"
+                    android:hint="Email"
                     android:textColor="@color/teal_200"
-                    android:textSize="18sp" />
+                    android:textSize="18sp"
+                    android:enabled="false" />
 
                 <Button
-                    android:id="@+id/edit"
+                    android:id="@+id/saveButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@drawable/bg_transparent"
                     android:backgroundTint="@color/teal_700"
                     android:paddingHorizontal="10dp"
-                    android:text="Edit Profile"
+                    android:text="Save"
                     android:textColor="@color/teal_700"
                     android:textColorHint="@color/teal_700"
-                    android:textStyle="italic" />
+                    android:textStyle="italic"
+                    android:visibility="gone" />
 
             </LinearLayout>
+
+
 
 
             <TextView
